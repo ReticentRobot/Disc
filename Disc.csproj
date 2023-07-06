@@ -38,7 +38,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\icon_disc.png" Color="#7646F0" />
 
 		<!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\icon_disc" BaseSize="128,128" />
+    <MauiSplashScreen Include="Resources\Splash\icon_splash.png" BaseSize="128,128" Color="#7646F0" />
     
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -57,7 +57,6 @@
 	  <None Remove="Resources\Images\disc_logo.png" />
 	  <None Remove="Resources\Images\icon_disc.png" />
 	  <None Remove="Resources\Images\icon_disc_ios.png" />
-	  <None Remove="Resources\Splash\icon_disc.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,7 +79,6 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\AppIcon\icon_disc.png" />
-	  <MauiImage Include="Resources\Splash\icon_disc.png" />
 	</ItemGroup>
 
 	<ItemGroup>

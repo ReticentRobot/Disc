@@ -32,7 +32,7 @@
             </HorizontalStackLayout>
 
             <Label 
-                Text="Logo created by itim2121" />
+                Text="ReticentRobot.com" />
             <Button 
                 Text="Learn more..." 
                 Clicked="Logo_Clicked"/>
