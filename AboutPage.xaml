@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:res="clr-namespace:Disc.Properties"
              x:Class="Disc.AboutPage"
+             Title="{Binding Title}"
              BackgroundColor="#7647f3">
     
     <ScrollView>
@@ -9,32 +11,29 @@
             Spacing="10" 
             Margin="10"
             VerticalOptions="StartAndExpand">
-            
+
             <HorizontalStackLayout 
                 Spacing="10">
-                
+
                 <Image 
                     Source="icon_disc.png"
                     SemanticProperties.Description="The Disc Logo"
                     HeightRequest="64" />
-                
-                <Label 
-                    FontSize="22" 
-                    FontAttributes="Bold" 
-                    Text="Disc" 
-                    VerticalOptions="End" />
-                
-                <Label 
-                    FontSize="22" 
-                    Text="v0.1" 
-                    VerticalOptions="End" />
-                
+
             </HorizontalStackLayout>
 
+            <Label
+                Text="{x:Static res:Resources.Version}"
+                TextColor="Crimson"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="{x:Static res:Resources.Version}"
+                FontSize="14"
+                HorizontalOptions="Center" />
+            
             <Label 
                 Text="ReticentRobot.com" />
             <Button 
-                Text="Learn more..." 
+                Text="{x:Static res:Resources.LearnMoreText}" 
                 Clicked="Logo_Clicked"/>
             
         </VerticalStackLayout>

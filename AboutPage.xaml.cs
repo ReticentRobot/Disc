@@ -16,7 +16,7 @@ public partial class AboutPage : ContentPage
     private async void Logo_Clicked(object sender, EventArgs e)
     {
         // Navigate to the specified URL in the system browser.
-        await Launcher.Default.OpenAsync("https://www.flaticon.com/authors/itim2101");
+        await Launcher.Default.OpenAsync("https://www.reticentrobot.com");
     }
 }
 

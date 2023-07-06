@@ -59,5 +59,32 @@ namespace Disc.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more....
+        /// </summary>
+        internal static string LearnMoreText {
+            get {
+                return ResourceManager.GetString("LearnMoreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alpha Version 0.1.
+        /// </summary>
+        internal static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to Disc for Discuit.
+        /// </summary>
+        internal static string WelcomeText {
+            get {
+                return ResourceManager.GetString("WelcomeText", resourceCulture);
+            }
+        }
     }
 }

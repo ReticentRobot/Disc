@@ -8,14 +8,25 @@
 
     <TabBar>
         <ShellContent
-            Title="Disc"
             ContentTemplate="{DataTemplate local:MainPage}"
             Icon="{OnPlatform 'icon_disc.png', iOS='icon_disc_ios.png', MacCatalyst='icon_disc_ios.png'}" />
 
         <ShellContent
-            Title="About"
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Icon="{OnPlatform 'icon_home.svg', iOS='icon_home.svg', MacCatalyst='icon_home.svg'}" />
+
+        <ShellContent
+            ContentTemplate="{DataTemplate local:SubscriptionsPage}"
+            Icon="{OnPlatform 'icon_subscriptions.svg', iOS='icon_subscriptions.svg', MacCatalyst='icon_subscriptions.svg'}" />
+
+        <ShellContent
+            ContentTemplate="{DataTemplate local:SettingsPage}"
+            Icon="{OnPlatform 'icon_settings.svg', iOS='icon_settings.svg', MacCatalyst='icon_settings.svg'}" />
+
+        <ShellContent
             ContentTemplate="{DataTemplate local:AboutPage}"
             Icon="{OnPlatform 'icon_about.png', iOS='icon_about_ios.png', MacCatalyst='icon_about_ios.png'}" />
+
     </TabBar>
 
 </Shell>
