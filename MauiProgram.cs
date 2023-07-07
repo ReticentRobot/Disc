@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Disc.Services;
+using Disc.Views;
 
 namespace Disc;
 
@@ -19,6 +21,13 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
+        builder.Services.AddSingleton<IRestService, RestService>();
+        builder.Services.AddSingleton<IPostService, PostService>();
+
+        builder.Services.AddSingleton<HomePage>();
+        builder.Services.AddTransient<PostPage>();
+
+        return builder.Build();
 	}
 }

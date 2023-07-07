@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:Disc.Properties"
+             x:Class="Disc.MainPage"
+             Title="{Binding Title}"
+             BackgroundColor="#7647f3"
+             NavigationPage.BackButtonTitle=""  
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="icon_disc.png"
+                SemanticProperties.Description="Disc Icon"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="{x:Static res:Resources.WelcomeText}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="{x:Static res:Resources.WelcomeText}"
+                FontSize="18"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button
+                x:Name="CounterBtn"
+                Text="Get Started"
+                SemanticProperties.Hint="Begins setup process"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

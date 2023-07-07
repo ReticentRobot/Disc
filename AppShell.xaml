@@ -7,17 +7,21 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <ShellContent
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Icon="{OnPlatform 'icon_disc.png', iOS='icon_disc_ios.png', MacCatalyst='icon_disc_ios.png'}" />
-
-        <ShellContent
+         <ShellContent
             ContentTemplate="{DataTemplate local:HomePage}"
             Icon="{OnPlatform 'icon_home.svg', iOS='icon_home.svg', MacCatalyst='icon_home.svg'}" />
 
         <ShellContent
             ContentTemplate="{DataTemplate local:SubscriptionsPage}"
             Icon="{OnPlatform 'icon_subscriptions.svg', iOS='icon_subscriptions.svg', MacCatalyst='icon_subscriptions.svg'}" />
+
+        <ShellContent
+            ContentTemplate="{DataTemplate local:CommunitiesPage}"
+            Icon="{OnPlatform 'icon_communities.svg', iOS='icon_communities.svg', MacCatalyst='icon_communities.svg'}" />
+
+        <ShellContent
+            ContentTemplate="{DataTemplate local:GuidelinesPage}"
+            Icon="{OnPlatform 'icon_guidelines.svg', iOS='icon_guidelines.svg', MacCatalyst='icon_guidelines.svg'}" />
 
         <ShellContent
             ContentTemplate="{DataTemplate local:SettingsPage}"

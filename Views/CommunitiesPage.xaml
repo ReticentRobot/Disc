@@ -1,9 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:Disc.Properties"
-             x:Class="Disc.MainPage"
+              x:Class="Disc.CommunitiesPage"
              Title="{Binding Title}"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.BackButtonTitle=""  
+             NavigationPage.HasNavigationBar="False"
              BackgroundColor="#7647f3">
 
     <ScrollView>
@@ -19,18 +22,18 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{x:Static res:Resources.WelcomeText}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="{x:Static res:Resources.WelcomeText}"
-                FontSize="18"
+                Text="{x:Static res:Resources.CommunitiesTitleText}"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="{x:Static res:Resources.CommunitiesTitleText}"
+                FontSize="32"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Get Started"
-                SemanticProperties.Hint="Begins setup process"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            <Label
+                Text="{x:Static res:Resources.CommunitiesText}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="{x:Static res:Resources.CommunitiesText}"
+                FontSize="18"
+                HorizontalOptions="CenterAndExpand" />
 
         </VerticalStackLayout>
     </ScrollView>

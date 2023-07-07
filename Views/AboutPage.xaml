@@ -4,6 +4,9 @@
              xmlns:res="clr-namespace:Disc.Properties"
              x:Class="Disc.AboutPage"
              Title="{Binding Title}"
+             NavigationPage.BackButtonTitle=""  
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
              BackgroundColor="#7647f3">
     
     <ScrollView>

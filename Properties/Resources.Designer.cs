@@ -61,11 +61,146 @@ namespace Disc.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string AboutTitleText {
+            get {
+                return ResourceManager.GetString("AboutTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work in Progress.
+        /// </summary>
+        internal static string CommunitiesText {
+            get {
+                return ResourceManager.GetString("CommunitiesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Communities.
+        /// </summary>
+        internal static string CommunitiesTitleText {
+            get {
+                return ResourceManager.GetString("CommunitiesTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work in Progress.
+        /// </summary>
+        internal static string GuidelinesText {
+            get {
+                return ResourceManager.GetString("GuidelinesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guidelines.
+        /// </summary>
+        internal static string GuidelinesTitleText {
+            get {
+                return ResourceManager.GetString("GuidelinesTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work in Progress.
+        /// </summary>
+        internal static string HomeText {
+            get {
+                return ResourceManager.GetString("HomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string HomeTitleText {
+            get {
+                return ResourceManager.GetString("HomeTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Learn more....
         /// </summary>
         internal static string LearnMoreText {
             get {
                 return ResourceManager.GetString("LearnMoreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disc.
+        /// </summary>
+        internal static string MainTitleText {
+            get {
+                return ResourceManager.GetString("MainTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string SettingsButtonText {
+            get {
+                return ResourceManager.GetString("SettingsButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to password.
+        /// </summary>
+        internal static string SettingsPasswordText {
+            get {
+                return ResourceManager.GetString("SettingsPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work in Progress.
+        /// </summary>
+        internal static string SettingsText {
+            get {
+                return ResourceManager.GetString("SettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string SettingsTitleText {
+            get {
+                return ResourceManager.GetString("SettingsTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        internal static string SettingsUsernameText {
+            get {
+                return ResourceManager.GetString("SettingsUsernameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work in Progress.
+        /// </summary>
+        internal static string SubscriptionsText {
+            get {
+                return ResourceManager.GetString("SubscriptionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscriptions.
+        /// </summary>
+        internal static string SubscriptionsTitleText {
+            get {
+                return ResourceManager.GetString("SubscriptionsTitleText", resourceCulture);
             }
         }
         
