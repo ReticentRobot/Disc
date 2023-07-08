@@ -12,23 +12,23 @@
             Icon="{OnPlatform 'icon_home.svg', iOS='icon_home.svg', MacCatalyst='icon_home.svg'}" />
 
         <ShellContent
-            ContentTemplate="{DataTemplate local:SubscriptionsPage}"
+            ContentTemplate="{DataTemplate views:SubscriptionsPage}"
             Icon="{OnPlatform 'icon_subscriptions.svg', iOS='icon_subscriptions.svg', MacCatalyst='icon_subscriptions.svg'}" />
 
         <ShellContent
-            ContentTemplate="{DataTemplate local:CommunitiesPage}"
+            ContentTemplate="{DataTemplate views:CommunitiesPage}"
             Icon="{OnPlatform 'icon_communities.svg', iOS='icon_communities.svg', MacCatalyst='icon_communities.svg'}" />
 
         <ShellContent
-            ContentTemplate="{DataTemplate local:GuidelinesPage}"
+            ContentTemplate="{DataTemplate views:GuidelinesPage}"
             Icon="{OnPlatform 'icon_guidelines.svg', iOS='icon_guidelines.svg', MacCatalyst='icon_guidelines.svg'}" />
 
         <ShellContent
-            ContentTemplate="{DataTemplate local:SettingsPage}"
+            ContentTemplate="{DataTemplate views:SettingsPage}"
             Icon="{OnPlatform 'icon_settings.svg', iOS='icon_settings.svg', MacCatalyst='icon_settings.svg'}" />
 
         <ShellContent
-            ContentTemplate="{DataTemplate local:AboutPage}"
+            ContentTemplate="{DataTemplate views:AboutPage}"
             Icon="{OnPlatform 'icon_about.png', iOS='icon_about_ios.png', MacCatalyst='icon_about_ios.png'}" />
 
     </TabBar>

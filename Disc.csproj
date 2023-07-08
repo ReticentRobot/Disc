@@ -38,7 +38,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\icon_disc.png" Color="#7646F0" />
 
 		<!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\icon_splash.png" Color="#7646F0" />
+    <MauiSplashScreen Include="Resources\Splash\icon_splash.png" Color="#7646F0" BaseSize="128,128" />
     
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -51,7 +51,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\AppIcon\disc_logo.png" />
+    <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+    <None Remove="Resources\AppIcon\disc_logo.png" />
 	  <None Remove="Resources\Images\icon_about.png" />
 	  <None Remove="Resources\Images\icon_about_ios.png" />
 	  <None Remove="Resources\Images\disc_logo.png" />
@@ -71,22 +72,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="AboutPage.xaml">
+	  <MauiXaml Update="Views\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CommunitiesPage.xaml">
+	  <MauiXaml Update="Views\CommunitiesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="GuidelinesPage.xaml">
+	  <MauiXaml Update="Views\GuidelinesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SettingsPage.xaml">
+	  <MauiXaml Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SubscriptionsPage.xaml">
+	  <MauiXaml Update="Views\SubscriptionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PostPage.xaml">

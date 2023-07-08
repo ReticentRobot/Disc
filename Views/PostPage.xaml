@@ -19,10 +19,10 @@
     </ContentPage.Resources>
     <VerticalStackLayout Margin="20">
         <Label Text="Name" />
-        <Entry Text="{Binding Path=PostItem.title}" 
+        <Entry Text="{Binding Path=PostItem.Title}" 
                Placeholder="Enter item" />
         <Label Text="Notes" />
-        <Entry Text="{Binding Path=PostItem.body}"
+        <Entry Text="{Binding Path=PostItem.Body}"
                Placeholder="Enter notes" />
         <Label Text="Done" />
     </VerticalStackLayout>

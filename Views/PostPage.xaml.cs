@@ -4,33 +4,33 @@ using Disc.Services;
 namespace Disc.Views
 {
     [QueryProperty(nameof(PostItem), "PostItem")]
-    public partial class PostItemPage : ContentPage
+    public partial class PostPage : ContentPage
     {
-        IPostService _PostService;
-        PostItem _PostItem;
+        IPostService _postService;
+        PostItem _postItem;
         bool _isNewItem;
 
         public PostItem PostItem
         {
-            get => _PostItem;
+            get => _postItem;
             set
             {
                 _isNewItem = IsNewItem(value);
-                _PostItem = value;
+                _postItem = value;
                 OnPropertyChanged();
             }
         }
 
-        public PostItemPage(IPostService service)
+        public PostPage(IPostService service)
         {
             InitializeComponent();
-            _PostService = service;
+            _postService = service;
             BindingContext = this;
         }
 
         bool IsNewItem(PostItem PostItem)
         {
-            if (string.IsNullOrWhiteSpace(PostItem.title) && string.IsNullOrWhiteSpace(PostItem.body))
+            if (string.IsNullOrWhiteSpace(PostItem.Title) && string.IsNullOrWhiteSpace(PostItem.Body))
                 return true;
             return false;
         }
