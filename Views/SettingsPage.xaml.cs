@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 //using LoginAPI.Models;
 
-namespace Disc;
+namespace Disc.Views;
 
 public partial class SettingsPage : ContentPage
 {

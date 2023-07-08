@@ -1,4 +1,4 @@
-namespace Disc;
+namespace Disc.Views;
 
 public partial class SubscriptionsPage : ContentPage
 {

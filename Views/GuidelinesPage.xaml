@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:Disc.Properties"
-              x:Class="Disc.GuidelinesPage"
+             x:Class="Disc.Views.GuidelinesPage"
              Title="{Binding Title}"
              NavigationPage.HasBackButton="False"
              NavigationPage.BackButtonTitle=""  
