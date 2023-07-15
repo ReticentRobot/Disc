@@ -21,12 +21,12 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
-        builder.Services.AddSingleton<IRestService, RestService>();
-        builder.Services.AddSingleton<IPostService, PostService>();
+        //builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
+        //builder.Services.AddSingleton<IRestService, RestService>();
+        builder.Services.AddSingleton<IPostsService, PostsService>();
 
         builder.Services.AddSingleton<HomePage>();
-        builder.Services.AddTransient<PostPage>();
+        builder.Services.AddTransient<PostsPage>();
 
         return builder.Build();
 	}

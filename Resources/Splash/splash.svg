@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Generator: Adobe Fireworks 10, Export SVG Extension by Aaron Beall (http://fireworks.abeall.com) . Version: 0.6.1  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="icon_splash-Page%201" viewBox="0 0 128 128" style="background-color:#ffffff00" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+	x="0px" y="0px" width="128px" height="128px"
+>
+	<defs>
+	<clipPath id="mask1">
+		<path d="M 47.6085 10.9167 L 102.5043 10.9167 L 102.5043 133.4167 L 47.6085 133.4167 L 47.6085 10.9167 Z" fill="#7646f0"/>
+		<rect x="46.1602" y="20.7786" width="2.8812" height="37.0492" fill="#000000"/>
+		<rect x="46.1602" y="70.4489" width="1.6464" height="35.8278" fill="#000000"/>
+	</clipPath>
+		<clipPath id="mask2">
+			<path d="M 68.6399 33.5337 L 66.2176 38.7565 C 66.2176 38.7565 72.677 44.0518 76.1269 50.943 L 82.7332 48.114 L 68.6399 33.5337 ZM 65.9974 31.7927 L 61.1529 29.6166 L 58.9508 34.4041 L 63.7953 36.5803 L 65.9974 31.7927 Z" fill="#000000"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#mask1)">
+		<path d="M 55.7875 64.42 C 55.7875 59.7808 51.982 56.02 47.2875 56.02 C 42.593 56.02 38.7875 59.7808 38.7875 64.42 C 38.7875 69.0592 42.593 72.82 47.2875 72.82 C 51.982 72.82 55.7875 69.0592 55.7875 64.42 ZM 90 64 C 90 87.1962 70.9724 106 47.5 106 C 24.0276 106 5 87.1962 5 64 C 5 40.8037 24.0276 22 47.5 22 C 70.9724 22 90 40.8037 90 64 Z" stroke="#000000" stroke-width="2" fill="#dbdbea"/>
+		<path d="M 40.3143 64.2033 C 40.3143 60.2893 43.5249 57.1164 47.4855 57.1164 C 51.4461 57.1164 54.6567 60.2893 54.6567 64.2033 C 54.6567 68.1173 51.4461 71.2901 47.4855 71.2901 C 43.5249 71.2901 40.3143 68.1173 40.3143 64.2033 ZM 29.2228 64.1088 C 29.2228 74.0243 37.3564 82.0622 47.3899 82.0622 C 57.4234 82.0622 65.557 74.0243 65.557 64.1088 C 65.557 54.1933 57.4234 46.1554 47.3899 46.1554 C 37.3564 46.1554 29.2228 54.1933 29.2228 64.1088 Z" stroke="#000000" stroke-width="2" fill="#310c94"/>
+		<path clip-path="url(#mask2)" d="M 80.5311 52.9016 C 80.5311 52.9016 74.8791 37.0881 58.5104 31.3575 " stroke="#000000" stroke-width="2" fill="none"/>
+		<path id="Line" d="M 46.5091 22.1088 L 46.5091 105.9669 " stroke="#000000" stroke-width="2" fill="none"/>
+	</g>
+	<path id="Line2" d="M 46.5 14.5 L 46.5 114.5 " stroke="#010101" stroke-width="3" fill="none"/>
+</svg>

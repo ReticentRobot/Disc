@@ -29,6 +29,10 @@
             Icon="{OnPlatform 'icon_settings.svg', iOS='icon_settings.svg', MacCatalyst='icon_settings.svg'}" />
 
         <ShellContent
+            ContentTemplate="{DataTemplate views:PostsPage}"
+            Icon="{OnPlatform 'icon_settings.svg', iOS='icon_settings.svg', MacCatalyst='icon_settings.svg'}" />
+
+        <ShellContent
             ContentTemplate="{DataTemplate views:AboutPage}"
             Icon="{OnPlatform 'icon_about.png', iOS='icon_about_ios.png', MacCatalyst='icon_about_ios.png'}" />
 
