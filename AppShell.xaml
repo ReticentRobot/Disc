@@ -30,7 +30,7 @@
 
         <ShellContent
             ContentTemplate="{DataTemplate views:PostsPage}"
-            Icon="{OnPlatform 'icon_settings.svg', iOS='icon_settings.svg', MacCatalyst='icon_settings.svg'}" />
+            Icon="{OnPlatform 'icon_posts.svg', iOS='icon_posts.svg', MacCatalyst='icon_posts.svg'}" />
 
         <ShellContent
             ContentTemplate="{DataTemplate views:AboutPage}"

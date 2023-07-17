@@ -60,6 +60,7 @@
 	  <None Remove="Resources\Images\icon_disc_ios.png" />
 	  <None Remove="Resources\Images\icon_guidelines.svg" />
 	  <None Remove="Resources\Images\icon_home.svg" />
+	  <None Remove="Resources\Images\icon_posts.svg" />
 	  <None Remove="Resources\Images\icon_settings.svg" />
 	  <None Remove="Resources\Images\icon_subscriptions.svg" />
 	</ItemGroup>
@@ -83,13 +84,13 @@
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\PostsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SubscriptionsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\PostsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -103,9 +104,6 @@
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Resources.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\PostsPage.xaml.cs">
-	    <DependentUpon>PostsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

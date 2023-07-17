@@ -1,64 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:Disc.ViewModels"
-             x:Class="Disc.Views.HomePage"
-             x:DataType="viewmodels:PostsViewModel">
+             x:Class="Disc.Views.HomePage">
 
-    <VerticalStackLayout>
-        <Label 
-            Text="Today"
-            FontSize="20"
-            VerticalOptions="Center" 
-            HorizontalOptions="Start"
-            TextTransform="Uppercase" />
-
-        <!-- Loading -->
+    <!--<ScrollView>
         <VerticalStackLayout
-            IsVisible="{Binding State, Converter={StaticResource IsLoadingConverter}}">
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
 
-            <ActivityIndicator
-                IsRunning="{Binding State, Converter={StaticResource IsLoadingConverter}}" />
+            <Button Text="Get Response" Clicked="GetJSON_Clicked"/>
 
-            <Label
-                Text="Loading post data" />
-        </VerticalStackLayout>
-
-        <!-- Loaded -->
-        <VerticalStackLayout
-            IsVisible="{Binding State, Converter={StaticResource HasLoadedConverter}}">
-
-            <Label
-                VerticalOptions="Center" 
-                HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span
-                            Text="{Binding Title}"
-                            FontSize="60"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-
-            <Label 
-                Text="{Binding Body}"
-                FontSize="20"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+            <Label Text="{Binding jsonArray}" />
 
         </VerticalStackLayout>
+    </ScrollView>-->
 
-        <!-- Error -->
-        <VerticalStackLayout
-            IsVisible="{Binding State, Converter={StaticResource HasErrorConverter}}">
+    <ListView ItemsSource="{Binding Posts}">
+        <ListView.Header>
+            <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
 
-            <Label
-                Text="Unable to load posts" />
+                <Button Text="Get Response" Clicked="GetJSON_Clicked"/>
 
-            <Button
-                Text="Retry"
-                Command="{Binding LoadPostsCommand}" />
+            </VerticalStackLayout>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.RowSpan="2"
+                           
+                           HeightRequest="60"
+                           WidthRequest="60" />
+                        <Label Grid.Column="1"
+                           Text="{Binding Title}"
+                           FontAttributes="Bold" />
+                        <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding Body}"
+                           FontAttributes="Italic"
+                           VerticalOptions="End" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
-        </VerticalStackLayout>
-    </VerticalStackLayout>
 </ContentPage>

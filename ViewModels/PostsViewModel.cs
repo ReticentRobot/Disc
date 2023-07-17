@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Disc.Services;
@@ -7,8 +8,9 @@ namespace Disc.ViewModels;
 public class PostsViewModel : BaseViewModel
 {
 	public const string DisplayName = "Posts";
+    
 
-	readonly IPostsService postsService;
+    readonly IPostsService postsService;
 	State state;
 	string title;
 	string body;
@@ -54,7 +56,7 @@ public class PostsViewModel : BaseViewModel
         {
             State = State.Loading;
 
-            var posts = await postsService.GetTasksAsync();
+            var posts = await postsService.GetPosts();
 
             Title = posts.Title;
             Body = posts.Body;

@@ -1,10 +1,11 @@
 using Disc.Models;
 using Disc.Services;
+using System.Collections.ObjectModel;
 
 namespace Disc.Views
 {
     [QueryProperty(nameof(Posts), "Posts")]
-    public partial class PostsPage : ContentPage
+    public partial class PostsPage // : ContentPage
     {
         IPostsService _postsService;
         Posts _posts;
@@ -20,6 +21,9 @@ namespace Disc.Views
                 OnPropertyChanged();
             }
         }
+
+
+        public ObservableCollection<Posts> PostList { get; set; }
 
         public PostsPage(IPostsService service)
         {
