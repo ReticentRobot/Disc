@@ -26,8 +26,6 @@ namespace Disc.Services
                 
                 var stringContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-
-
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true,

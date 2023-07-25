@@ -3,59 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:Disc.Properties"
               x:Class="Disc.Views.SettingsPage"
-             Title="{Binding Title}"
+             Title="Settings"
              NavigationPage.HasBackButton="False"
              NavigationPage.BackButtonTitle=""  
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#7647f3">
+             BackgroundColor="#000">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="icon_disc.png"
-                SemanticProperties.Description="Disc Icon"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="{x:Static res:Resources.SettingsTitleText}"
-                SemanticProperties.HeadingLevel="Level1"
-                SemanticProperties.Description="{x:Static res:Resources.SettingsTitleText}"
-                FontSize="32"
-                HorizontalOptions="CenterAndExpand" />
-            
-            <Label
-                Text="{x:Static res:Resources.SettingsText}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="{x:Static res:Resources.SettingsText}"
-                FontSize="18"
-                HorizontalOptions="CenterAndExpand" />
-
-            <Entry x:Name="txtUsername"
-                   Placeholder="{x:Static res:Resources.SettingsUsernameText}"
-                   />
-
-            <Entry x:Name="txtPassword"
-                   Placeholder="{x:Static res:Resources.SettingsPasswordText}"
-                   />
-
-            <Button x:Name="btnLogin"
-                    Text="{x:Static res:Resources.SettingsButtonText}"
-                    BackgroundColor="#310C94"
-                    TextColor="#DBDBEA"
-                    BorderColor="#DBDBEA"
-                    CornerRadius="25"
-                    BorderWidth="2"
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    VerticalOptions="Center"
-                    />
-
-        </VerticalStackLayout>
-    </ScrollView>
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin"
+                    Value="0,10,0,10" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="20" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+                    Value="10,15,200,15" />
+            <Setter Property="FontAttributes"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="15" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout Margin="20">
+        <Label Text="Username" />
+        <Entry Text="{Binding Path=LoginInfo.Username}" 
+               Placeholder="Enter username" />
+        <Label Text="Password" />
+        <Entry Text="{Binding Path=LoginInfo.Password}"
+               IsPassword='True'              
+               Placeholder="Enter password" />
+        <Button Text="Log In" 
+                Clicked="OnLoginButtonClicked" />
+    </VerticalStackLayout>
 
 </ContentPage>
