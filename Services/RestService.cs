@@ -8,6 +8,7 @@ namespace Disc.Services
     public class RestService : IRestService
     {
         HttpClient _client;
+
         JsonSerializerOptions _serializerOptions;
         IHttpsClientHandlerService _httpsClientHandlerService;
 
@@ -34,14 +35,17 @@ namespace Disc.Services
 
         public async Task LoginAsync(LoginInfo login)
         {
-            Uri uri = new Uri(string.Format(Constants.RestUrl+"_login", string.Empty));
+            Uri uri = new Uri(string.Format(Constants.RestUrl + "_login", string.Empty));
 
             try
             {
+
                 string json = JsonSerializer.Serialize<LoginInfo>(login, _serializerOptions);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("Login: " + login);
                 Console.WriteLine("Content: " + json);
+                Console.WriteLine("Content: " + content);
                 Console.WriteLine("-----------------------------------------");
 
                 HttpResponseMessage response = null;
@@ -51,11 +55,21 @@ namespace Disc.Services
                 Console.WriteLine("Content: " + response);
                 Console.WriteLine("-----------------------------------------");
 
-                if (response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode == true)
+                {
                     Console.WriteLine("-----------------------------------------");
                     Console.WriteLine(response.IsSuccessStatusCode);
-                    Debug.WriteLine(@"\tLogin Verified");
+                    Console.WriteLine("Login Verified");
                     Console.WriteLine("-----------------------------------------");
+                }
+                else
+                {
+                    Console.WriteLine("-----------------------------------------");
+                    Console.WriteLine(response.IsSuccessStatusCode);
+                    Console.WriteLine("Login Failed");
+                    Console.WriteLine("-----------------------------------------");
+                }
+                    
             }
             catch (Exception ex)
             {

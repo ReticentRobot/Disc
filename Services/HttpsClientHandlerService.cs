@@ -23,7 +23,12 @@ namespace Disc.Services
                     return true;
                 //return errors == System.Net.Security.SslPolicyErrors.None;
             };
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("Handler Info: " + handler);
+            Console.WriteLine("-----------------------------------");
             return handler;
+
+            
 #elif IOS
             var handler = new NSUrlSessionHandler
             {
@@ -38,6 +43,7 @@ namespace Disc.Services
         }
 #if ANDROID && NET6_0
     Console.WriteLine("-----------------------------------"
+    Console.WriteLine("ANDROID && NET6_0"
     internal sealed class CustomAndroidMessageHandler : Xamarin.Android.Net.AndroidMessageHandler
     {
         protected override Javax.Net.Ssl.IHostnameVerifier GetSSLHostnameVerifier(Javax.Net.Ssl.HttpsURLConnection connection)
@@ -47,11 +53,11 @@ namespace Disc.Services
         {
             public bool Verify(string hostname, Javax.Net.Ssl.ISSLSession session)
             {
-                return Javax.Net.Ssl.HttpsURLConnection.DefaultHostnameVerifier.Verify(hostname, session) ||
-                    hostname == "10.0.2.2" && session.PeerPrincipal?.Name == "CN=localhost";
+                return true;
             }
         }
     }
+    Console.WriteLine("-----------------------------------"
 #elif IOS
         public bool IsHttpsLocalhost(NSUrlSessionHandler sender, string url, Security.SecTrust trust)
         {

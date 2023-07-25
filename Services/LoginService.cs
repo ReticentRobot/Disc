@@ -13,8 +13,6 @@ namespace Disc.Services
 
         public Task LoginAsync(LoginInfo login)
         {
-            Console.WriteLine("-----------------------------------");
-            Console.WriteLine("Login: " + login);
             return _restService.LoginAsync(login);
         }
     }
