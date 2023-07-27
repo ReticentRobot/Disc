@@ -1,60 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Disc.Views.HomePage">
+             x:Class="Disc.Views.HomePage" Title="Posts"
+             xmlns:local="clr-namespace:Disc"
+             xmlns:vm="clr-namespace:Disc.ViewModels"
+             x:DataType="vm:PostsViewModel"
+             >
 
-    <!--<ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Button Text="Get Response" Clicked="GetJSON_Clicked"/>
-
-            <Label Text="{Binding jsonArray}" />
-
-        </VerticalStackLayout>
-    </ScrollView>-->
-
-    <ListView ItemsSource="{Binding Posts}">
+    <ListView ItemsSource="{Binding LoadPostsCommand}">
         <ListView.Header>
             <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
 
-                <Button Text="Get Response" Clicked="GetJSON_Clicked"/>
+                <Button 
+                    x:Name="UpdateBtn"
+                    Text="Load Posts"
+                    Command="{Binding LoadPostsCommand}"
+                    Margin="10"
+                    />
 
             </VerticalStackLayout>
         </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.RowSpan="2"
-                           
-                           HeightRequest="60"
-                           WidthRequest="60" />
-                        <Label Grid.Column="1"
-                           Text="{Binding Title}"
-                           FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding Body}"
-                           FontAttributes="Italic"
-                           VerticalOptions="End" />
-                    </Grid>
-                </ViewCell>
+                <TextCell Text="{Binding Title}" Detail="{Binding Body}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-
 </ContentPage>

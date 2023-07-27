@@ -1,79 +1,62 @@
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
+using Disc.Models;
+using System.Text.Json;
 using System.Windows.Input;
-using Disc.Services;
 
 namespace Disc.ViewModels;
 
 public class PostsViewModel : BaseViewModel
 {
-	public const string DisplayName = "Posts";
-    
+    private string _type;
+    public string Type { get =>  _type; set { _type = value; OnPropertyChanged(nameof(Type)); } }
+    private string _username;
+    public string Username { get => _username; set { _username = value; OnPropertyChanged(nameof(Username)); } }
+    private string _communityName;
+    public string CommunityName { get => _communityName; set { _communityName = value; OnPropertyChanged(nameof(CommunityName)); } }
+    private string _title;
+    public string Title { get => _title; set { _title = value; OnPropertyChanged(nameof(Title)); } }
+    private string _body;
+    public string Body { get => _body; set { _body = value; OnPropertyChanged(nameof(Body)); } }
 
-    readonly IPostsService postsService;
-	State state;
-	string title;
-	string body;
+    public ICommand LoadPostsCommand { get; set; }
 
-    public ICommand LoadPostsCommand { get; }
-
-    public State State
+    public PostsViewModel() 
     {
-        get => state;
-        set => SetProperty(ref state, value);
-    }
-
-    public string Title
-    {
-        get => title;
-        set => SetProperty(ref title, value);
-    }
-
-    public string Body
-    {
-        get => body;
-        set => SetProperty(ref body, value);
-    }
-
-    public PostsViewModel(IPostsService postsService)
-    {
-        this.postsService = postsService;
-
         LoadPostsCommand = new Command(async () => await LoadPosts());
-
-        Task.Run(async () => await LoadPosts());
-
-        return;
     }
-
-    public int Position { get; set; }
-
-    public string Type => DisplayName;
-
     private async Task LoadPosts()
     {
-        try
+        var url = $"https://discuit.net/api/posts";
+        var client = new HttpClient();
+        var response = await client.GetAsync(url);
+        var successCode = await client.GetAsync(url);
+
+        // validate connection
+        if (successCode.IsSuccessStatusCode)
         {
-            State = State.Loading;
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("Code 200 -  Successful Connection to REST API");
+            Console.WriteLine("-----------------------------------");
 
-            var posts = await postsService.GetPosts();
+            var data = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            var posts = JsonSerializer.Deserialize<Posts>(data, options);
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("Data: " + data);
+            Console.WriteLine("Posts: " + posts);
+            Console.WriteLine("-----------------------------------");
 
-            Title = posts.Title;
-            Body = posts.Body;
-
-            State = State.Loaded;
+            var Type = posts.Type;
+            var Username = posts.Username;
+            var CommunityName = posts.CommunityName;
+            var Title = posts.Title;
+            var Body = posts.Body;    
         }
-        catch (Exception ex)
+        else
         {
-            State = State.Error;
+            Console.WriteLine("Error connecting to API");
         }
     }
-}
-
-public enum State
-{
-    None = 0,
-    Loading = 1,
-    Loaded = 2,
-    Error = 3
 }
