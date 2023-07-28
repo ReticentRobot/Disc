@@ -10,7 +10,7 @@ namespace Disc.Services
 {
     public class PostsService : IPostsService
     {
-        public async Task<Posts> GetPosts()
+        public async Task<Post> GetPosts()
         {
             var url = $"https://discuit.net/api/posts";
             var client = new HttpClient();
@@ -32,9 +32,9 @@ namespace Disc.Services
                 };
 
                 Console.WriteLine("String Content = " + stringContent);
-                var PostList = JsonSerializer.Deserialize<Posts>(stringContent, options);
+                var PostList = JsonSerializer.Deserialize<Post>(stringContent, options);
 
-                return JsonSerializer.Deserialize<Posts>(stringContent, options);
+                return JsonSerializer.Deserialize<Post>(stringContent, options);
             }
             else
             {

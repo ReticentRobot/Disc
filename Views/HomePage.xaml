@@ -7,7 +7,7 @@
              x:DataType="vm:PostsViewModel"
              >
 
-    <ListView ItemsSource="{Binding LoadPostsCommand}">
+    <ListView ItemsSource="{Binding Data.Posts}" SeparatorVisibility="None">
         <ListView.Header>
             <VerticalStackLayout
             Spacing="25"
@@ -25,7 +25,41 @@
         </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Title}" Detail="{Binding Body}" />
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="2"
+                           Source="{Binding Url}"
+                           Aspect="AspectFill"
+                           HeightRequest="60"
+                           WidthRequest="60" />
+                        <Label Grid.Column="1"
+                           Text="{Binding Title}"
+                           FontAttributes="Bold" />
+                        <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding Body}"                          
+                           FontAttributes="None"
+                           Margin="5"
+                           VerticalOptions="End" />
+                        <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding Username}"                         
+                           FontAttributes="None"
+                           Margin="5"
+                           VerticalOptions="End" />
+                    </Grid>
+                </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

@@ -4,6 +4,6 @@ namespace Disc.Services
 {
     public interface IPostsService
     {
-        Task<Posts> GetPosts();
+        Task<Post> GetPosts();
     }
 }

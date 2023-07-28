@@ -8,22 +8,22 @@ namespace Disc.Views
     public partial class PostsPage // : ContentPage
     {
         IPostsService _postsService;
-        Posts _posts;
-        bool _isNewItem;
+        Post _posts;
+        //bool _isNewItem;
 
-        public Posts Posts
+        public Post Posts
         {
             get => _posts;
             set
             {
-                _isNewItem = IsNewItem(value);
+                //_isNewItem = IsNewItem(value);
                 _posts = value;
                 OnPropertyChanged();
             }
         }
 
 
-        public ObservableCollection<Posts> PostList { get; set; }
+        public ObservableCollection<Post> PostList { get; set; }
 
         public PostsPage(IPostsService service)
         {
@@ -32,11 +32,13 @@ namespace Disc.Views
             BindingContext = this;
         }
 
-        bool IsNewItem(Posts Posts)
+        /*
+        bool IsNewItem(Post Posts)
         {
-            if (string.IsNullOrWhiteSpace(Posts.Title) && string.IsNullOrWhiteSpace(Posts.Body))
+            if (string.IsNullOrWhiteSpace(Posts.Title) && string.IsNullOrWhiteSpace(Post.Body))
                 return true;
             return false;
         }
+        */
     }
 }
