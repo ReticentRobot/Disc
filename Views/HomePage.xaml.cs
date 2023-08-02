@@ -1,18 +1,20 @@
+using CommunityToolkit.Mvvm.Input;
 using Disc.ViewModels;
 
 namespace Disc.Views;
 public partial class HomePage : ContentPage
 {
+    PostsViewModel vm;
+
     public HomePage()
     {
         InitializeComponent();
-        BindingContext = new PostsViewModel();
+        BindingContext = vm = new PostsViewModel();
     }
 
-    protected override async void OnAppearing()
+    protected async override void OnAppearing()
     {
-        base.OnAppearing();
-        PostsViewModel postsViewModel = new PostsViewModel();
-        await postsViewModel.LoadPosts();
+        await vm.LoadPosts();
     }
+
 }

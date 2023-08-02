@@ -1,9 +1,9 @@
-using Newtonsoft.Json;
+
 using System.Text.Json.Serialization;
 
 namespace Disc.Models
 {
-    [JsonObject]
+    
     public class Profile
     {
         [JsonPropertyName("id")] public string Id { get; }

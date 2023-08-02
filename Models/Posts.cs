@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System.Text.Json.Serialization;
 
 namespace Disc.Models
@@ -43,13 +43,13 @@ namespace Disc.Models
         [JsonPropertyName("height")] public int Height { get; set; }
         [JsonPropertyName("size")] public int Size { get; set; }
         [JsonPropertyName("averageColor")] public string AverageColor { get; set; }
-        [JsonPropertyName("url")] public string Url { get; set; }
+        [JsonPropertyName("url")] public string ImageUrl { get; set; }
         [JsonPropertyName("copies")] public List<Copy> Copies { get; set; }
     }
 
     public class Link
     {
-        [JsonPropertyName("url")] public string Url { get; set; }
+        [JsonPropertyName("url")] public string LinkUrl { get; set; }
         [JsonPropertyName("hostname")] public string Hostname { get; set; }
         [JsonPropertyName("image")] public Image Image { get; set; }
     }
@@ -90,7 +90,7 @@ namespace Disc.Models
         [JsonPropertyName("userVotedUp")] public string? UserVotedUp { get; set; }
     }
 
-    [JsonObject]
+    
     public class Root
     {
         [JsonPropertyName("posts")] public List<Post> Posts { get; set; }

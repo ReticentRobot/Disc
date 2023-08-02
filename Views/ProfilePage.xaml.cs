@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Linq;
+
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http.Json;
@@ -14,6 +14,3 @@ public partial class ProfilePage : ContentPage
         InitializeComponent();
     }
 }
-
-
-

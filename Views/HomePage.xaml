@@ -5,62 +5,57 @@
              xmlns:local="clr-namespace:Disc"
              xmlns:vm="clr-namespace:Disc.ViewModels"
              x:DataType="vm:PostsViewModel"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              >
+    <!--<ContentPage.Behaviors>
+        <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
+        <mct:EventToCommandBehavior Command="{Binding DisappearingCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>-->
 
-    <ListView ItemsSource="{Binding Data.Posts}" SeparatorVisibility="None">
-        <ListView.Header>
-            <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-                <Button 
-                    x:Name="UpdateBtn"
-                    Text="Load Posts"
-                    Command="{Binding LoadPostsCommand}"
-                    Margin="10"
-                    />
-
-            </VerticalStackLayout>
-        </ListView.Header>
-        <ListView.ItemTemplate>
+    <CollectionView ItemsSource="{Binding Data.Posts}">
+        <CollectionView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2"
-                           Source="{Binding Url}"
-                           Aspect="AspectFill"
-                           HeightRequest="60"
-                           WidthRequest="60" />
-                        <Label Grid.Column="1"
-                           Text="{Binding Title}"
-                           FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding Body}"                          
-                           FontAttributes="None"
-                           Margin="5"
-                           VerticalOptions="End" />
-                        <Label Grid.Row="2"
-                           Grid.Column="1"
-                           Text="{Binding Username}"                         
-                           FontAttributes="None"
-                           Margin="5"
-                           VerticalOptions="End" />
-                    </Grid>
-                </ViewCell>
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.RowSpan="4"
+                       Source="{Binding Image.ImageUrl}"
+                       Aspect="AspectFill"
+                       HeightRequest="60"
+                       WidthRequest="60" />
+                    <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       FontAttributes="Bold" />
+                    <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Username}"
+                       TextColor="Grey"
+                       FontAttributes="None"
+                       VerticalOptions="End" />
+                    <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Text="{Binding NoComments}"
+                       TextColor="Grey"
+                       FontAttributes="None"
+                       VerticalOptions="End" />
+                    <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Margin="10,0,0,0"
+                       Text="Comments"
+                       TextColor="Grey"
+                       FontAttributes="None"
+                       VerticalOptions="End" />
+                </Grid>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
