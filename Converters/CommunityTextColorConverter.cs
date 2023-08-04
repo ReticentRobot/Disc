@@ -15,7 +15,7 @@ namespace Disc.Converters
             }
        
             string text = values[0] as string;
-            Console.WriteLine("CommunityText Value: " + text);
+            //Console.WriteLine("CommunityText Value: " + text);
             Color defaultColor = (Color)values[1];
 
             if (text == "CommunityName")

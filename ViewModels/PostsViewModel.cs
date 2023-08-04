@@ -4,6 +4,7 @@ using RestSharp;
 using RestSharp.Authenticators;
 using System.Text.Json;
 using RestSharp.Serializers.NewtonsoftJson;
+using System.Collections.ObjectModel;
 
 namespace Disc.ViewModels;
 
@@ -55,33 +56,44 @@ public partial class PostsViewModel : BaseViewModel
 
     //FetchNextData vars
     public string baseUrl { get; set; } = "https://discuit.net/api";
-    public string endPoint { get; set; } //= "/posts";
+    public string endPoint { get; set; } = "/posts";
     public RestClient client { get; set; } //= new RestClient();
-    public RestRequest request { get; set; } //= new RestRequest();
-    public RestResponse content { get; set; } //= new RestResponse();
-    public JsonSerializerOptions options { get; set; } //= new JsonSerializerOptions();
-    public RestRequest nextrequest { get; set; } //= new RestRequest();
 
-    public async Task LoadPosts()
+    public ObservableCollection<Post> Posts { get; set; }
+
+    // constructor to initialize objects
+    public PostsViewModel()
     {
-        //create a request to the api
         var clientoptions = new RestClientOptions(baseUrl)
         {
             //Authenticator = new HttpBasicAuthenticator("discapp", "testing123")
         };
-        var client = new RestClient(
-                            clientoptions,
-                            configureSerialization: s => s.UseNewtonsoftJson()
-        );
-        //client.AddDefaultParameter("feed", "all");      //One of: home, all, community.
-        //client.AddDefaultParameter("filter", "all");    //One of: all, deleted, locked. If not set, all is the default.*
-        //client.AddDefaultParameter("sort", "hot");      //One of: latest, hot, activity, day, week, month, year, all.
-        string endPoint = "/posts";
-        var request = new RestRequest(endPoint);
+
+        client = new RestClient(
+                                clientoptions,
+                                configureSerialization: s => s.UseNewtonsoftJson()
+            );
+
+        Posts = new ObservableCollection<Post>();
+    }
+
+    // only need one method to request data
+    // update the incremental event handler to call this
+    public async Task LoadPosts()
+    {
+        string url = endPoint;
+
+        // add the parameter for Next page of data
+        if (Data != null && !string.IsNullOrEmpty(Data.Next))
+        {
+            url += "?next=" + Data.Next;
+        }
+
+        var request = new RestRequest(url);
         var content = await client.GetAsync(request);
 
         //set json options
-        var options = new JsonSerializerOptions
+        JsonSerializerOptions options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
         };
@@ -89,6 +101,13 @@ public partial class PostsViewModel : BaseViewModel
         if (content.StatusCode.ToString() == "OK")
         {
             Data = JsonSerializer.Deserialize<Root>(content.Content, options);
+
+            // we want to add to the existing Posts collection
+            foreach (var p in Data.Posts)
+            {
+                Posts.Add(p);
+            }
+
             Console.WriteLine("Status OK");
         }
         else
@@ -96,27 +115,63 @@ public partial class PostsViewModel : BaseViewModel
             Console.WriteLine("Error connecting to API");
         }
     }
+
+
+    //public async Task LoadPosts()
+    //{
+    //    //create a request to the api
+    //    var clientoptions = new RestClientOptions(baseUrl)
+    //    {
+    //        //Authenticator = new HttpBasicAuthenticator("discapp", "testing123")
+    //    };
+    //    var client = new RestClient(
+    //                        clientoptions,
+    //                        configureSerialization: s => s.UseNewtonsoftJson()
+    //    );
+    //    //client.AddDefaultParameter("feed", "all");      //One of: home, all, community.
+    //    //client.AddDefaultParameter("filter", "all");    //One of: all, deleted, locked. If not set, all is the default.*
+    //    //client.AddDefaultParameter("sort", "hot");      //One of: latest, hot, activity, day, week, month, year, all.
+    //    string endPoint = "/posts";
+    //    var request = new RestRequest(endPoint);
+    //    var content = await client.GetAsync(request);
+
+    //    //set json options
+    //    var options = new JsonSerializerOptions
+    //    {
+    //        PropertyNameCaseInsensitive = true,
+    //    };
+
+    //    if (content.StatusCode.ToString() == "OK")
+    //    {
+    //        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
+    //        Console.WriteLine("Status OK");
+    //    }
+    //    else
+    //    {
+    //        Console.WriteLine("Error connecting to API");
+    //    }
+    //}
 
     //get next data function to be called from the code behind
-    public async void FetchNextData()
-    {
-        Console.WriteLine("Threshold Reached");
+    //public async void FetchNextData()
+    //{
+    //    Console.WriteLine("Threshold Reached");
 
-        //create a request to the api with the next page string
-        request = new RestRequest(endPoint + "?" + Data.Next);
+    //    //create a request to the api with the next page string
+    //    request = new RestRequest(endPoint + "?" + Data.Next);
 
-        //get next results
-        content = await client.GetAsync(nextrequest);
+    //    //get next results
+    //    content = await client.GetAsync(nextrequest);
 
-        if (content.StatusCode.ToString() == "OK")
-        {
-            Console.WriteLine("Status OK");
-            Data = JsonSerializer.Deserialize<Root>(content.Content, options);
-        }
-        else
-        {
-            Console.WriteLine("Error connecting to API");
-        }
-    }
+    //    if (content.StatusCode.ToString() == "OK")
+    //    {
+    //        Console.WriteLine("Status OK");
+    //        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
+    //    }
+    //    else
+    //    {
+    //        Console.WriteLine("Error connecting to API");
+    //    }
+    //}
 
 }

@@ -13,7 +13,7 @@
     </ContentPage.Behaviors>-->
 
     <CollectionView 
-        ItemsSource="{Binding Data.Posts}"
+        ItemsSource="{Binding Posts}"
         BackgroundColor="#1C1D20"
         RemainingItemsThreshold="1"
         RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached">
