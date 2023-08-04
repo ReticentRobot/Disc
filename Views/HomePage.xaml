@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Disc.Views.HomePage" Title="Posts"
+             x:Class="Disc.Views.HomePage" Title="All"
              xmlns:local="clr-namespace:Disc"
              xmlns:vm="clr-namespace:Disc.ViewModels"
              x:DataType="vm:PostsViewModel"
@@ -12,11 +12,20 @@
         <mct:EventToCommandBehavior Command="{Binding DisappearingCommand}" EventName="Disappearing" />
     </ContentPage.Behaviors>-->
 
-    <CollectionView ItemsSource="{Binding Data.Posts}">
+    <CollectionView 
+        ItemsSource="{Binding Data.Posts}"
+        BackgroundColor="#1C1D20">
+        <!--RemainingItemsThreshold="5"
+        RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"-->
+        
+        <!--<CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+        </CollectionView.ItemsLayout>-->
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid Padding="10">
+                <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -24,36 +33,89 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width=".5*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Image Grid.RowSpan="4"
-                       Source="{Binding Image.ImageUrl}"
-                       Aspect="AspectFill"
-                       HeightRequest="60"
-                       WidthRequest="60" />
-                    <Label Grid.Column="1"
-                       Text="{Binding Title}"
-                       FontAttributes="Bold" />
-                    <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding Username}"
-                       TextColor="Grey"
-                       FontAttributes="None"
-                       VerticalOptions="End" />
-                    <Label Grid.Row="3"
-                       Grid.Column="1"
-                       Text="{Binding NoComments}"
-                       TextColor="Grey"
-                       FontAttributes="None"
-                       VerticalOptions="End" />
-                    <Label Grid.Row="3"
-                       Grid.Column="1"
-                       Margin="10,0,0,0"
-                       Text="Comments"
-                       TextColor="Grey"
-                       FontAttributes="None"
-                       VerticalOptions="End" />
+                    <Border 
+                        Stroke="#1C1D20" 
+                        StrokeThickness="0" 
+                        StrokeShape="RoundRectangle 15"  
+                        Grid.RowSpan="5"
+                        Margin="10"
+                        Padding="10"
+                        HeightRequest="75"
+                        WidthRequest="75"
+                        >
+                        <Image 
+                            Grid.RowSpan="5"
+                            Source="{Binding Link.Image.ImageUrl, StringFormat='https://discuit.net{0}'}"
+                            Aspect="AspectFill"
+                            HeightRequest="80"
+                            WidthRequest="80" />
+                    </Border>
+                    <Label 
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="{Binding Title}"
+                        LineBreakMode="WordWrap"
+                        MaxLines="2"
+                        FontAttributes="Bold" 
+                        Padding="0,10,5,0"
+                        />
+                    <Label 
+                        x:Name="communityAndUserLabel"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        FontAttributes="None"
+                        VerticalOptions="End">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0} • {1}">
+                                <Binding Path="CommunityName" />
+                                <Binding Path="Username" />
+                            </MultiBinding>
+                        </Label.Text>
+                        <Label.TextColor>
+                            <MultiBinding Converter="{StaticResource CommunityTextColorConverter}">
+                                <Binding 
+                                Path="CommunityName" Source="x:Reference communityAndUserLabel" />
+                                <Binding 
+                                Path="Username" Source="x:Reference communityAndUserLabel" />
+                            </MultiBinding>
+                        </Label.TextColor>
+                    </Label>
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        TextColor="Grey"
+                        FontAttributes="None">
+                        <MultiBinding StringFormat="{}{0:M/d/y - ddd h:mmt} • {1}">
+                            <Binding Path="CreatedAt" />
+                            <Binding Path="Link.Hostname" />
+                        </MultiBinding>
+                    </Label>
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        TextColor="Grey"
+                        FontAttributes="None"
+                        VerticalOptions="End" 
+                        Padding="0,0,0,10">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0} Upvotes • {1} Downvotes • {2} Comments">
+                                <Binding Path="Upvotes" />
+                                <Binding Path="Downvotes" />
+                                <Binding Path="NoComments" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    <BoxView
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        HeightRequest="3" 
+                        Color="Black" 
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"/>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using Disc.Interfaces;
 using Disc.Services;
 using Disc.Views;
+using Disc.ViewModels;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -28,6 +30,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<IRestService, RestService>();
         builder.Services.AddSingleton<IPostsService, PostsService>();
         builder.Services.AddSingleton<ILoginService, LoginService>();
+        //builder.Services.AddTransient<IPostsViewModel, PostsViewModel>();
 
         builder.Services.AddSingleton<HomePage>();
         builder.Services.AddTransient<PostsPage>();
