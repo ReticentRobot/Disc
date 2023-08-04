@@ -53,20 +53,23 @@ public partial class PostsViewModel : BaseViewModel
     private string _hostname;
     public string Hostname { get => _hostname; set { _hostname = value; OnPropertyChanged(nameof(Hostname)); } }
 
-    //Method Variables to be accessed in the code behind
-    public string baseUrl { get; set; }
-    public string endPoint { get; set; }
-    public RestClient Client { get; set; }
+    //FetchNextData vars
+    public string baseUrl { get; set; } = "https://discuit.net/api";
+    public string endPoint { get; set; } //= "/posts";
+    public RestClient client { get; set; } //= new RestClient();
+    public RestRequest request { get; set; } //= new RestRequest();
+    public RestResponse content { get; set; } //= new RestResponse();
+    public JsonSerializerOptions options { get; set; } //= new JsonSerializerOptions();
+    public RestRequest nextrequest { get; set; } //= new RestRequest();
 
     public async Task LoadPosts()
     {
         //create a request to the api
-        string baseUrl = "https://discuit.net/api";
         var clientoptions = new RestClientOptions(baseUrl)
         {
             //Authenticator = new HttpBasicAuthenticator("discapp", "testing123")
         };
-        var Client = new RestClient(
+        var client = new RestClient(
                             clientoptions,
                             configureSerialization: s => s.UseNewtonsoftJson()
         );
@@ -75,10 +78,10 @@ public partial class PostsViewModel : BaseViewModel
         //client.AddDefaultParameter("sort", "hot");      //One of: latest, hot, activity, day, week, month, year, all.
         string endPoint = "/posts";
         var request = new RestRequest(endPoint);
-        var content = await Client.GetAsync(request);
+        var content = await client.GetAsync(request);
 
         //set json options
-        JsonSerializerOptions options = new JsonSerializerOptions
+        var options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
         };
@@ -100,16 +103,10 @@ public partial class PostsViewModel : BaseViewModel
         Console.WriteLine("Threshold Reached");
 
         //create a request to the api with the next page string
-        var request = new RestRequest(endPoint + "?" + Data.Next);
+        request = new RestRequest(endPoint + "?" + Data.Next);
 
         //get next results
-        var content = await Client.GetAsync(request);
-
-        //set json options
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        };
+        content = await client.GetAsync(nextrequest);
 
         if (content.StatusCode.ToString() == "OK")
         {

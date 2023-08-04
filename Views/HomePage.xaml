@@ -14,9 +14,9 @@
 
     <CollectionView 
         ItemsSource="{Binding Data.Posts}"
-        BackgroundColor="#1C1D20">
-        <!--RemainingItemsThreshold="5"
-        RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"-->
+        BackgroundColor="#1C1D20"
+        RemainingItemsThreshold="1"
+        RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached">
         
         <!--<CollectionView.ItemsLayout>
             <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
