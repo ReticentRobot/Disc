@@ -60,8 +60,8 @@ public partial class PostsViewModel : BaseViewModel
     public RestClient client { get; set; } //= new RestClient();
 
     // Bindable Property to check if data is loading
-    public bool IsLoadingMoreItems { get; set; } = false;
-    public static readonly BindableProperty IsLoadingMoreItemsProperty = BindableProperty.Create(nameof(IsLoadingMoreItems), typeof(bool), typeof(PostsViewModel), false);
+    //public bool IsLoadingMoreItems { get; set; } = false;
+    //public static readonly BindableProperty IsLoadingMoreItemsProperty = BindableProperty.Create(nameof(IsLoadingMoreItems), typeof(bool), typeof(PostsViewModel), false);
 
     public ObservableCollection<Post> Posts { get; set; }
 
@@ -81,9 +81,14 @@ public partial class PostsViewModel : BaseViewModel
         Posts = new ObservableCollection<Post>();
     }
 
+    //bool flag = false;
+
     public async Task LoadPosts()
     {
-        IsLoadingMoreItems = false;
+        //if (flag) return;
+        //flag = true;
+
+        //IsLoadingMoreItems = false;
         Console.WriteLine("********************");
         Console.WriteLine("LoadPosts() Launched");
         Console.WriteLine("********************");
@@ -110,7 +115,7 @@ public partial class PostsViewModel : BaseViewModel
 
         if (content.StatusCode.ToString() == "OK")
         {
-            IsLoadingMoreItems = true;
+            //IsLoadingMoreItems = true;
             Data = JsonSerializer.Deserialize<Root>(content.Content, options);
 
             var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
@@ -133,13 +138,13 @@ public partial class PostsViewModel : BaseViewModel
                 Console.WriteLine("Current Post Index: (" + Index + ")" + Data.Posts[Index].Title);
                 Index++;
             }
-            IsLoadingMoreItems = false;
+            //flag = false;
             Console.WriteLine(".....................................................................");
         }
         else
         {
             Console.WriteLine("Error connecting to API");
-        }
+        } 
     }
 }
 

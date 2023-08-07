@@ -1,9 +1,4 @@
-using CommunityToolkit.Mvvm.Input;
 using Disc.ViewModels;
-using Disc.Models;
-using RestSharp;
-using System.Net;
-using System.Text.Json;
 
 namespace Disc.Views;
 public partial class HomePage : ContentPage
@@ -22,17 +17,21 @@ public partial class HomePage : ContentPage
         await vm.LoadPosts();
     }
 
-    public bool IsLoadingMoreItems = true;
+    bool IsLoadingMoreItems = false;
     async void OnCollectionViewRemainingItemsThresholdReached(object sender, EventArgs e)
     {
-        if(IsLoadingMoreItems == true)
-        {
-            Console.WriteLine("+++++++++++++++++");
-            Console.WriteLine("Threshold reached");
-            Console.WriteLine("+++++++++++++++++");
-            await vm.LoadPosts();
-            IsLoadingMoreItems = false;
-        }
+        if (IsLoadingMoreItems) return;
+
+        IsLoadingMoreItems = true;
+        
+        Console.WriteLine("+++++++++++++++++");
+        Console.WriteLine("Threshold reached");
+        Console.WriteLine("+++++++++++++++++");
+        await vm.LoadPosts();
+
+        IsLoadingMoreItems = false;
+        
+        
         //await Task.Run(() => vm.FetchNextData());
     }
 
