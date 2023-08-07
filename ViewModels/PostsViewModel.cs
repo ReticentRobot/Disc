@@ -55,8 +55,8 @@ public partial class PostsViewModel : BaseViewModel
     public string Hostname { get => _hostname; set { _hostname = value; OnPropertyChanged(nameof(Hostname)); } }
 
     //FetchNextData vars
-    public string baseUrl { get; set; } = "https://discuit.net/api";
-    public string endPoint { get; set; } = "/posts";
+    public string baseUrl { get; set; } = Constants.RestUrl;
+    public string endPoint { get; set; } = "/posts?limit=" + Constants.PageSize;
     public RestClient client { get; set; } //= new RestClient();
 
     public ObservableCollection<Post> Posts { get; set; }
@@ -81,15 +81,24 @@ public partial class PostsViewModel : BaseViewModel
     // update the incremental event handler to call this
     public async Task LoadPosts()
     {
-        string url = endPoint;
+        Console.WriteLine(".................................");
+        Console.WriteLine("LoadPosts() Launched");
+        Console.WriteLine(".................................");
+        string url = baseUrl + endPoint;
 
         // add the parameter for Next page of data
         if (Data != null && !string.IsNullOrEmpty(Data.Next))
         {
-            url += "?next=" + Data.Next;
+            url += "&next=" + Data.Next;
+            Console.WriteLine(".................................");
+            Console.WriteLine("New URL: " + url);
+            Console.WriteLine(".................................");
         }
 
         var request = new RestRequest(url);
+
+        var TotalPostsBeforePull = Posts.Count; //Total number of posts before pulling new posts
+
         var content = await client.GetAsync(request);
 
         //set json options
@@ -102,76 +111,85 @@ public partial class PostsViewModel : BaseViewModel
         {
             Data = JsonSerializer.Deserialize<Root>(content.Content, options);
 
-            // we want to add to the existing Posts collection
-            foreach (var p in Data.Posts)
-            {
-                Posts.Add(p);
-            }
+            var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
+            Console.WriteLine(".................................");
+            Console.WriteLine("Number of Posts in pull: " + NewPosts);
 
+            var PostsCount = NewPosts + TotalPostsBeforePull; //Total number of posts after pulling new posts
+            Console.WriteLine("Total number of posts after pulling new posts: " + PostsCount);
+
+            var Index = NewPosts - Constants.PageSize; //Get the root index of the new posts pulled in
+
+            while (NewPosts > Index) //while the total number of posts is greater than the total number of posts minus the limit of posts to add
+            {
+                Posts.Add(Data.Posts[Index]);
+                Console.WriteLine("Current Post Index: (" + Index + ")" + Data.Posts[Index].Title);
+                Index++;
+            }
             Console.WriteLine("Status OK");
+            Console.WriteLine(".................................");
         }
         else
         {
             Console.WriteLine("Error connecting to API");
         }
     }
-
-
-    //public async Task LoadPosts()
-    //{
-    //    //create a request to the api
-    //    var clientoptions = new RestClientOptions(baseUrl)
-    //    {
-    //        //Authenticator = new HttpBasicAuthenticator("discapp", "testing123")
-    //    };
-    //    var client = new RestClient(
-    //                        clientoptions,
-    //                        configureSerialization: s => s.UseNewtonsoftJson()
-    //    );
-    //    //client.AddDefaultParameter("feed", "all");      //One of: home, all, community.
-    //    //client.AddDefaultParameter("filter", "all");    //One of: all, deleted, locked. If not set, all is the default.*
-    //    //client.AddDefaultParameter("sort", "hot");      //One of: latest, hot, activity, day, week, month, year, all.
-    //    string endPoint = "/posts";
-    //    var request = new RestRequest(endPoint);
-    //    var content = await client.GetAsync(request);
-
-    //    //set json options
-    //    var options = new JsonSerializerOptions
-    //    {
-    //        PropertyNameCaseInsensitive = true,
-    //    };
-
-    //    if (content.StatusCode.ToString() == "OK")
-    //    {
-    //        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
-    //        Console.WriteLine("Status OK");
-    //    }
-    //    else
-    //    {
-    //        Console.WriteLine("Error connecting to API");
-    //    }
-    //}
-
-    //get next data function to be called from the code behind
-    //public async void FetchNextData()
-    //{
-    //    Console.WriteLine("Threshold Reached");
-
-    //    //create a request to the api with the next page string
-    //    request = new RestRequest(endPoint + "?" + Data.Next);
-
-    //    //get next results
-    //    content = await client.GetAsync(nextrequest);
-
-    //    if (content.StatusCode.ToString() == "OK")
-    //    {
-    //        Console.WriteLine("Status OK");
-    //        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
-    //    }
-    //    else
-    //    {
-    //        Console.WriteLine("Error connecting to API");
-    //    }
-    //}
-
 }
+
+//public async Task LoadPosts()
+//{
+//    //create a request to the api
+//    var clientoptions = new RestClientOptions(baseUrl)
+//    {
+//        //Authenticator = new HttpBasicAuthenticator("discapp", "testing123")
+//    };
+//    var client = new RestClient(
+//                        clientoptions,
+//                        configureSerialization: s => s.UseNewtonsoftJson()
+//    );
+//    //client.AddDefaultParameter("feed", "all");      //One of: home, all, community.
+//    //client.AddDefaultParameter("filter", "all");    //One of: all, deleted, locked. If not set, all is the default.*
+//    //client.AddDefaultParameter("sort", "hot");      //One of: latest, hot, activity, day, week, month, year, all.
+//    string endPoint = "/posts";
+//    var request = new RestRequest(endPoint);
+//    var content = await client.GetAsync(request);
+
+//    //set json options
+//    var options = new JsonSerializerOptions
+//    {
+//        PropertyNameCaseInsensitive = true,
+//    };
+
+//    if (content.StatusCode.ToString() == "OK")
+//    {
+//        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
+//        Console.WriteLine("Status OK");
+//    }
+//    else
+//    {
+//        Console.WriteLine("Error connecting to API");
+//    }
+//}
+
+//get next data function to be called from the code behind
+//public async void FetchNextData()
+//{
+//    Console.WriteLine("Threshold Reached");
+
+//    //create a request to the api with the next page string
+//    request = new RestRequest(endPoint + "?" + Data.Next);
+
+//    //get next results
+//    content = await client.GetAsync(nextrequest);
+
+//    if (content.StatusCode.ToString() == "OK")
+//    {
+//        Console.WriteLine("Status OK");
+//        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
+//    }
+//    else
+//    {
+//        Console.WriteLine("Error connecting to API");
+//    }
+//}
+

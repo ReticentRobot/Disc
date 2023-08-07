@@ -25,6 +25,7 @@ public partial class HomePage : ContentPage
     async void OnCollectionViewRemainingItemsThresholdReached(object sender, EventArgs e)
     {
         await vm.LoadPosts();
+        Console.WriteLine("Threshold reached");
         //await Task.Run(() => vm.FetchNextData());
     }
 
