@@ -59,6 +59,10 @@ public partial class PostsViewModel : BaseViewModel
     public string endPoint { get; set; } = "/posts?limit=" + Constants.PageSize;
     public RestClient client { get; set; } //= new RestClient();
 
+    // Bindable Property to check if data is loading
+    public bool IsLoadingMoreItems { get; set; } = false;
+    public static readonly BindableProperty IsLoadingMoreItemsProperty = BindableProperty.Create(nameof(IsLoadingMoreItems), typeof(bool), typeof(PostsViewModel), false);
+
     public ObservableCollection<Post> Posts { get; set; }
 
     // constructor to initialize objects
@@ -77,28 +81,25 @@ public partial class PostsViewModel : BaseViewModel
         Posts = new ObservableCollection<Post>();
     }
 
-    // only need one method to request data
-    // update the incremental event handler to call this
     public async Task LoadPosts()
     {
-        Console.WriteLine(".................................");
+        IsLoadingMoreItems = false;
+        Console.WriteLine("********************");
         Console.WriteLine("LoadPosts() Launched");
-        Console.WriteLine(".................................");
+        Console.WriteLine("********************");
         string url = baseUrl + endPoint;
 
         // add the parameter for Next page of data
         if (Data != null && !string.IsNullOrEmpty(Data.Next))
         {
             url += "&next=" + Data.Next;
-            Console.WriteLine(".................................");
+            Console.WriteLine("................................................................................");
             Console.WriteLine("New URL: " + url);
-            Console.WriteLine(".................................");
+            Console.WriteLine("................................................................................");
         }
 
         var request = new RestRequest(url);
-
         var TotalPostsBeforePull = Posts.Count; //Total number of posts before pulling new posts
-
         var content = await client.GetAsync(request);
 
         //set json options
@@ -109,25 +110,31 @@ public partial class PostsViewModel : BaseViewModel
 
         if (content.StatusCode.ToString() == "OK")
         {
+            IsLoadingMoreItems = true;
             Data = JsonSerializer.Deserialize<Root>(content.Content, options);
 
             var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
-            Console.WriteLine(".................................");
+            Console.WriteLine("---------");
+            Console.WriteLine("Status OK");
+            Console.WriteLine("---------");
+            Console.WriteLine("....................................................");
             Console.WriteLine("Number of Posts in pull: " + NewPosts);
 
             var PostsCount = NewPosts + TotalPostsBeforePull; //Total number of posts after pulling new posts
             Console.WriteLine("Total number of posts after pulling new posts: " + PostsCount);
+            Console.WriteLine("....................................................");
+            Console.WriteLine(".....................................................................");
 
             var Index = NewPosts - Constants.PageSize; //Get the root index of the new posts pulled in
-
+            
             while (NewPosts > Index) //while the total number of posts is greater than the total number of posts minus the limit of posts to add
             {
                 Posts.Add(Data.Posts[Index]);
                 Console.WriteLine("Current Post Index: (" + Index + ")" + Data.Posts[Index].Title);
                 Index++;
             }
-            Console.WriteLine("Status OK");
-            Console.WriteLine(".................................");
+            IsLoadingMoreItems = false;
+            Console.WriteLine(".....................................................................");
         }
         else
         {

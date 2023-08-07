@@ -22,10 +22,17 @@ public partial class HomePage : ContentPage
         await vm.LoadPosts();
     }
 
+    public bool IsLoadingMoreItems = true;
     async void OnCollectionViewRemainingItemsThresholdReached(object sender, EventArgs e)
     {
-        await vm.LoadPosts();
-        Console.WriteLine("Threshold reached");
+        if(IsLoadingMoreItems == true)
+        {
+            Console.WriteLine("+++++++++++++++++");
+            Console.WriteLine("Threshold reached");
+            Console.WriteLine("+++++++++++++++++");
+            await vm.LoadPosts();
+            IsLoadingMoreItems = false;
+        }
         //await Task.Run(() => vm.FetchNextData());
     }
 
