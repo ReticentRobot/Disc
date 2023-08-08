@@ -1,9 +1,7 @@
-﻿
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Disc.Models
-{
-    
+{  
     public class LoginInfo
     {
         [JsonPropertyName("username")] public string Username { get; set; }

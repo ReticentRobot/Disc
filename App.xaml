@@ -6,7 +6,7 @@
              x:Class="Disc.App">
     <Application.Resources>
         <ResourceDictionary>
-            <converters:CommunityTextColorConverter x:Key="CommunityTextColorConverter" />
+            <converters:NameColorMultiConverter x:Key="nameColorMulti" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

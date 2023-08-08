@@ -1,7 +1,5 @@
 using Disc.Models;
-using System.Windows.Input;
 using RestSharp;
-using RestSharp.Authenticators;
 using System.Text.Json;
 using RestSharp.Serializers.NewtonsoftJson;
 using System.Collections.ObjectModel;
@@ -56,6 +54,7 @@ public partial class PostsViewModel : BaseViewModel
 
     //FetchNextData vars
     public string baseUrl { get; set; } = Constants.RestUrl;
+    public string feedSort { get; set; } = "&sort=hot";
     public string endPoint { get; set; } = "/posts?limit=" + Constants.PageSize;
     public RestClient client { get; set; } //= new RestClient();
 
@@ -92,7 +91,7 @@ public partial class PostsViewModel : BaseViewModel
         Console.WriteLine("********************");
         Console.WriteLine("LoadPosts() Launched");
         Console.WriteLine("********************");
-        string url = baseUrl + endPoint;
+        string url = baseUrl + endPoint + feedSort;
 
         // add the parameter for Next page of data
         if (Data != null && !string.IsNullOrEmpty(Data.Next))

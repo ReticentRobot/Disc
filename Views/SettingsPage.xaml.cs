@@ -35,5 +35,5 @@ namespace Disc.Views
 			await _loginService.LoginAsync(LoginInfo);
 			await Shell.Current.GoToAsync("..");
 		}
-	}
+    }
 }
