@@ -86,7 +86,7 @@ namespace Disc.Models
         [JsonPropertyName("comments")] public object Comments { get; set; }
         [JsonPropertyName("commentsNext")] public object CommentsNext { get; set; }
         [JsonPropertyName("userVoted")] public string UserVoted { get; set; }
-        [JsonPropertyName("userVotedUp")] public string? UserVotedUp { get; set; }
+        [JsonPropertyName("userVotedUp")] public string UserVotedUp { get; set; }
     }
 
     

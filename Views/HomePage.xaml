@@ -8,6 +8,11 @@
              xmlns:converters="clr-namespace:Disc.Converters;assembly=Disc"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              >
+    <ContentPage.Resources>
+        <!-- Define the converter resources -->
+        <converters:NameColorMultiConverter x:Key="nameColorMulti"/>
+        <!--<converters:UsernameColorConverter x:Key="usernameColor"/>-->
+    </ContentPage.Resources>
     <!--<ContentPage.Behaviors>
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
         <mct:EventToCommandBehavior Command="{Binding DisappearingCommand}" EventName="Disappearing" />
@@ -73,9 +78,9 @@
                         VerticalOptions="End">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding CommunityName, Mode=TwoWay}" TextColor="{Binding CommunityName, Converter={StaticResource nameColorMulti}, ConverterParameter=community}" />
+                                <Span Text="{Binding CommunityName}" TextColor="{Binding CommunityName, Converter={StaticResource nameColorMulti}, ConverterParameter=community, Mode=TwoWay}" />
                                 <Span Text=" • " TextColor="Grey" />
-                                <Span Text="{Binding Username, Mode=TwoWay}" TextColor="{Binding Username, Converter={StaticResource nameColorMulti}, ConverterParameter=username}" />
+                                <Span Text="{Binding Username}" TextColor="{Binding Username, Converter={StaticResource nameColorMulti}, ConverterParameter=username, Mode=TwoWay}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
