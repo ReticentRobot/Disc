@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:Disc"
              xmlns:vm="clr-namespace:Disc.ViewModels"
              x:DataType="vm:PostsViewModel"
+             xmlns:converters="clr-namespace:Disc.Converters;assembly=Disc"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              >
     <!--<ContentPage.Behaviors>
@@ -14,7 +15,7 @@
 
     <CollectionView 
         ItemsSource="{Binding Posts}"
-        BackgroundColor="#1C1D20"
+        BackgroundColor="{AppThemeBinding Light=Pink, Dark=#1C1D20}"
         RemainingItemsThreshold="5"
         RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached">
         <!--RemainingItemsThresholdReachedCommand="{Binding IsLoadingMoreItems}"-->
@@ -70,21 +71,33 @@
                         Grid.Column="1"
                         FontAttributes="None"
                         VerticalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding CommunityName, Mode=TwoWay}" TextColor="{Binding CommunityName, Converter={StaticResource nameColorMulti}, ConverterParameter=community}" />
+                                <Span Text=" • " TextColor="Grey" />
+                                <Span Text="{Binding Username, Mode=TwoWay}" TextColor="{Binding Username, Converter={StaticResource nameColorMulti}, ConverterParameter=username}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                        <!--<Label 
+                        x:Name="communityAndUserLabel"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        FontAttributes="None"
+                        VerticalOptions="End">
                         <Label.Text>
-                            <MultiBinding StringFormat="{}{0} • {1}">
+                            <MultiBinding StringFormat="{}{0} • {1}" Mode="TwoWay">
                                 <Binding Path="CommunityName" />
                                 <Binding Path="Username" />
                             </MultiBinding>
                         </Label.Text>
                         <Label.TextColor>
-                            <MultiBinding Converter="{StaticResource CommunityTextColorConverter}">
-                                <Binding 
-                                Path="CommunityName" Source="x:Reference communityAndUserLabel" />
-                                <Binding 
-                                Path="Username" Source="x:Reference communityAndUserLabel" />
+                            <MultiBinding Converter="{StaticResource nameColorMulti}" ConverterParameter="community">
+                                <Binding Path="CommunityName" />
+                                <Binding Path="Username" />
                             </MultiBinding>
                         </Label.TextColor>
-                    </Label>
+                    </Label>-->
                     <Label
                         Grid.Row="3"
                         Grid.Column="1"
