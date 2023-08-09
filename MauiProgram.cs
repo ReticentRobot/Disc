@@ -33,7 +33,7 @@ public static class MauiProgram
         //builder.Services.AddTransient<IPostsViewModel, PostsViewModel>();
 
         builder.Services.AddSingleton<HomePage>();
-        builder.Services.AddTransient<PostsPage>();
+        //builder.Services.AddTransient<PostsPage>();
         builder.Services.AddTransient<SettingsPage>();
 
         return builder.Build();
