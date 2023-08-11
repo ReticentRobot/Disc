@@ -52,6 +52,8 @@
 	<ItemGroup>
     <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
     <None Remove="Resources\AppIcon\disc_logo.png" />
+    <None Remove="Resources\Images\chevron_down.svg" />
+    <None Remove="Resources\Images\chevron_down_darkmode.svg" />
 	  <None Remove="Resources\Images\icon_about.png" />
 	  <None Remove="Resources\Images\icon_about_ios.png" />
 	  <None Remove="Resources\Images\disc_logo.png" />
@@ -63,12 +65,18 @@
 	  <None Remove="Resources\Images\icon_posts.svg" />
 	  <None Remove="Resources\Images\icon_settings.svg" />
 	  <None Remove="Resources\Images\icon_subscriptions.svg" />
+	  <None Remove="Resources\Images\image_link.svg" />
+	  <None Remove="Resources\Images\image_link_darkmode.svg" />
+	  <None Remove="Resources\Images\site_link.svg" />
+	  <None Remove="Resources\Images\site_link_darkmode.svg" />
+	  <None Remove="Resources\Images\text_link.svg" />
+	  <None Remove="Resources\Images\text_link_darkmode.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-		<PackageReference Include="Humanizer" Version="2.14.1" />
+		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
@@ -100,6 +108,9 @@
 	  <MauiXaml Update="Views\SubscriptionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\WebViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -111,6 +122,9 @@
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\WebViewPage.xaml.cs">
+	    <DependentUpon>WebViewPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

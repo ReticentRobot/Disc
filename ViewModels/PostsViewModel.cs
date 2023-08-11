@@ -82,6 +82,8 @@ public partial class PostsViewModel : BaseViewModel
 
     //bool flag = false;
 
+    
+
     public async Task LoadPosts()
     {
         //if (flag) return;
@@ -114,31 +116,31 @@ public partial class PostsViewModel : BaseViewModel
 
         if (content.StatusCode.ToString() == "OK")
         {
-            //IsLoadingMoreItems = true;
-            Data = JsonSerializer.Deserialize<Root>(content.Content, options);
+        //IsLoadingMoreItems = true;
+        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
 
-            var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
-            Console.WriteLine("---------");
-            Console.WriteLine("Status OK");
-            Console.WriteLine("---------");
-            Console.WriteLine("....................................................");
-            Console.WriteLine("Number of Posts in pull: " + NewPosts);
+        var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
+        Console.WriteLine("---------");
+        Console.WriteLine("Status OK");
+        Console.WriteLine("---------");
+        Console.WriteLine("....................................................");
+        Console.WriteLine("Number of Posts in pull: " + NewPosts);
 
-            var PostsCount = NewPosts + TotalPostsBeforePull; //Total number of posts after pulling new posts
-            Console.WriteLine("Total number of posts after pulling new posts: " + PostsCount);
-            Console.WriteLine("....................................................");
-            Console.WriteLine(".....................................................................");
+        var PostsCount = NewPosts + TotalPostsBeforePull; //Total number of posts after pulling new posts
+        Console.WriteLine("Total number of posts after pulling new posts: " + PostsCount);
+        Console.WriteLine("....................................................");
+        Console.WriteLine(".....................................................................");
 
-            var Index = NewPosts - Constants.PageSize; //Get the root index of the new posts pulled in
+        var Index = NewPosts - Constants.PageSize; //Get the root index of the new posts pulled in
             
-            while (NewPosts > Index) //while the total number of posts is greater than the total number of posts minus the limit of posts to add
-            {
-                Posts.Add(Data.Posts[Index]);
-                Console.WriteLine("Current Post Index: (" + Index + ")" + Data.Posts[Index].Title);
-                Index++;
-            }
-            //flag = false;
-            Console.WriteLine(".....................................................................");
+        while (NewPosts > Index) //while the total number of posts is greater than the total number of posts minus the limit of posts to add
+        {
+            Posts.Add(Data.Posts[Index]);
+            Console.WriteLine("Current Post Index: (" + Index + ")" + Data.Posts[Index].Title);
+            Index++;
+        }
+        //flag = false;
+        Console.WriteLine(".....................................................................");
         }
         else
         {
@@ -146,61 +148,3 @@ public partial class PostsViewModel : BaseViewModel
         } 
     }
 }
-
-//public async Task LoadPosts()
-//{
-//    //create a request to the api
-//    var clientoptions = new RestClientOptions(baseUrl)
-//    {
-//        //Authenticator = new HttpBasicAuthenticator("discapp", "testing123")
-//    };
-//    var client = new RestClient(
-//                        clientoptions,
-//                        configureSerialization: s => s.UseNewtonsoftJson()
-//    );
-//    //client.AddDefaultParameter("feed", "all");      //One of: home, all, community.
-//    //client.AddDefaultParameter("filter", "all");    //One of: all, deleted, locked. If not set, all is the default.*
-//    //client.AddDefaultParameter("sort", "hot");      //One of: latest, hot, activity, day, week, month, year, all.
-//    string endPoint = "/posts";
-//    var request = new RestRequest(endPoint);
-//    var content = await client.GetAsync(request);
-
-//    //set json options
-//    var options = new JsonSerializerOptions
-//    {
-//        PropertyNameCaseInsensitive = true,
-//    };
-
-//    if (content.StatusCode.ToString() == "OK")
-//    {
-//        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
-//        Console.WriteLine("Status OK");
-//    }
-//    else
-//    {
-//        Console.WriteLine("Error connecting to API");
-//    }
-//}
-
-//get next data function to be called from the code behind
-//public async void FetchNextData()
-//{
-//    Console.WriteLine("Threshold Reached");
-
-//    //create a request to the api with the next page string
-//    request = new RestRequest(endPoint + "?" + Data.Next);
-
-//    //get next results
-//    content = await client.GetAsync(nextrequest);
-
-//    if (content.StatusCode.ToString() == "OK")
-//    {
-//        Console.WriteLine("Status OK");
-//        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
-//    }
-//    else
-//    {
-//        Console.WriteLine("Error connecting to API");
-//    }
-//}
-

@@ -10,8 +10,10 @@
              >
     <ContentPage.Resources>
         <!-- Define the converter resources -->
-        <converters:NameColorMultiConverter x:Key="nameColorMulti"/>
-        <!--<converters:UsernameColorConverter x:Key="usernameColor"/>-->
+        <converters:CommunityNameColorConverter x:Key="communityNameColor"/>
+        <converters:UsernameColorConverter x:Key="usernameColor"/>
+        <converters:CreatedAtConverter x:Key="createdAt" />
+        <converters:LinkTypeImageConverter x:Key="typeToImage" />
     </ContentPage.Resources>
     <!--<ContentPage.Behaviors>
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
@@ -39,10 +41,9 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width=".5*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
                     <Border 
                         Stroke="#1C1D20" 
@@ -51,67 +52,63 @@
                         Grid.RowSpan="5"
                         Margin="10"
                         Padding="10"
-                        HeightRequest="75"
-                        WidthRequest="75"
+                        HeightRequest="55"
+                        WidthRequest="55"
                         >
                         <Image 
-                            Grid.RowSpan="5"
                             Source="{Binding Link.Image.ImageUrl, StringFormat='https://discuit.net{0}'}"
                             Aspect="AspectFill"
-                            HeightRequest="80"
-                            WidthRequest="80" />
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            Grid.Row="0" 
+                            Grid.Column="0">
+                            <Image.GestureRecognizers>
+                                <!-- Define a TapGestureRecognizer and handle its Tapped event -->
+                                <TapGestureRecognizer 
+                                    Tapped="OnTapGestureRecognizerTapped" 
+                                    CommandParameter="{Binding Link.LinkUrl}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
                     </Border>
                     <Label 
                         Grid.Column="1"
                         Grid.Row="1"
+                        FontSize="14"
                         Text="{Binding Title}"
                         LineBreakMode="WordWrap"
                         MaxLines="2"
-                        FontAttributes="Bold" 
-                        Padding="0,10,5,0"
+                        FontAttributes="None" 
+                        Padding="0,10,0,0"
                         />
                     <Label 
                         x:Name="communityAndUserLabel"
                         Grid.Row="2"
                         Grid.Column="1"
                         FontAttributes="None"
-                        VerticalOptions="End">
+                        VerticalOptions="End"
+                        Padding="0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding CommunityName}" TextColor="{Binding CommunityName, Converter={StaticResource nameColorMulti}, ConverterParameter=community, Mode=TwoWay}" />
-                                <Span Text=" • " TextColor="Grey" />
-                                <Span Text="{Binding Username}" TextColor="{Binding Username, Converter={StaticResource nameColorMulti}, ConverterParameter=username, Mode=TwoWay}" />
+                                <Span Text="{Binding CommunityName}" FontSize="11" TextColor="{Binding CommunityName, Converter={StaticResource communityNameColor}}" />
+                                <Span Text=" • " TextColor="Grey" FontSize="11" />
+                                <Span Text="{Binding Username}" FontSize="11" TextColor="{Binding Username, Converter={StaticResource usernameColor}}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                        <!--<Label 
-                        x:Name="communityAndUserLabel"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        FontAttributes="None"
-                        VerticalOptions="End">
-                        <Label.Text>
-                            <MultiBinding StringFormat="{}{0} • {1}" Mode="TwoWay">
-                                <Binding Path="CommunityName" />
-                                <Binding Path="Username" />
-                            </MultiBinding>
-                        </Label.Text>
-                        <Label.TextColor>
-                            <MultiBinding Converter="{StaticResource nameColorMulti}" ConverterParameter="community">
-                                <Binding Path="CommunityName" />
-                                <Binding Path="Username" />
-                            </MultiBinding>
-                        </Label.TextColor>
-                    </Label>-->
-                    <Label
+                    <Label 
                         Grid.Row="3"
                         Grid.Column="1"
-                        TextColor="Grey"
-                        FontAttributes="None">
-                        <MultiBinding StringFormat="{}{0:M/d/y - ddd h:mmt} • {1}">
-                            <Binding Path="CreatedAt" />
-                            <Binding Path="Link.Hostname" />
-                        </MultiBinding>
+                        FontAttributes="None"
+                        VerticalOptions="End"
+                        Padding="0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding CreatedAt, Converter={StaticResource createdAt}}" FontSize="11" />
+                                <Span Text=" • " TextColor="Grey" FontSize="11" />
+                                <Span Text="{Binding Link.LinkUrl}" FontSize="11" />
+                            </FormattedString>
+                        </Label.FormattedText>
                     </Label>
                     <Label
                         Grid.Row="4"
@@ -119,19 +116,43 @@
                         TextColor="Grey"
                         FontAttributes="None"
                         VerticalOptions="End" 
-                        Padding="0,0,0,10">
+                        Padding="0,0,0,10"
+                        FontSize="11">
                         <Label.Text>
-                            <MultiBinding StringFormat="{}{0} Upvotes • {1} Downvotes • {2} Comments">
+                            <MultiBinding StringFormat="{}{0} up • {1} down • {2} Comments">
                                 <Binding Path="Upvotes" />
                                 <Binding Path="Downvotes" />
                                 <Binding Path="NoComments" />
                             </MultiBinding>
                         </Label.Text>
                     </Label>
+                    <Image
+                        Source="{Binding Type, Converter={StaticResource typeToImage}}"
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        Aspect="AspectFill"
+                        HeightRequest="20"
+                        WidthRequest="20" 
+                        Margin="20,20,20,10" >
+
+                    </Image>
+                    <Image 
+                        Grid.Row="4"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        Source="chevron_down_darkmode.png"
+                        Aspect="AspectFill"
+                        HeightRequest="20"
+                        WidthRequest="20" 
+                        Margin="20,0,20,10"
+                        />
                     <BoxView
                         Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        HeightRequest="3" 
+                        Grid.ColumnSpan="3"
+                        HeightRequest="1" 
                         Color="Black" 
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"/>
