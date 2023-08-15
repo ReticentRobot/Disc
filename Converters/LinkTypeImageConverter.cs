@@ -9,15 +9,16 @@ namespace Disc.Converters
             // Check if the value is a string
             if (value is string type)
             {
+                Console.WriteLine("Post Type: " + type);
                 // Return the corresponding image file name based on the type
                 switch (type)
                 {
                     case "text":
-                        return "text_link_darkmode.png";
+                        return "icon_text_link.png";
                     case "image":
-                        return "image_link_darkmode.png";
+                        return "icon_image_link.png";
                     case "link":
-                        return "site_link_darkmode.png";
+                        return "icon_site_link.png";
                     default:
                         return null;
                 }

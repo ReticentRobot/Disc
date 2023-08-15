@@ -52,35 +52,36 @@
 	<ItemGroup>
     <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
     <None Remove="Resources\AppIcon\disc_logo.png" />
-    <None Remove="Resources\Images\chevron_down.svg" />
-    <None Remove="Resources\Images\chevron_down_darkmode.svg" />
+    <None Remove="Resources\Images\discuit_logo.png" />
 	  <None Remove="Resources\Images\icon_about.png" />
-	  <None Remove="Resources\Images\icon_about_ios.png" />
 	  <None Remove="Resources\Images\disc_logo.png" />
+	  <None Remove="Resources\Images\icon_chevron.svg" />
 	  <None Remove="Resources\Images\icon_communities.svg" />
 	  <None Remove="Resources\Images\icon_disc.png" />
-	  <None Remove="Resources\Images\icon_disc_ios.png" />
+	  <None Remove="Resources\Images\icon_filter.svg" />
 	  <None Remove="Resources\Images\icon_guidelines.svg" />
 	  <None Remove="Resources\Images\icon_home.svg" />
+	  <None Remove="Resources\Images\icon_image_link.svg" />
+	  <None Remove="Resources\Images\icon_menu.svg" />
 	  <None Remove="Resources\Images\icon_posts.svg" />
+	  <None Remove="Resources\Images\icon_search.svg" />
 	  <None Remove="Resources\Images\icon_settings.svg" />
+	  <None Remove="Resources\Images\icon_site_link.svg" />
 	  <None Remove="Resources\Images\icon_subscriptions.svg" />
-	  <None Remove="Resources\Images\image_link.svg" />
-	  <None Remove="Resources\Images\image_link_darkmode.svg" />
-	  <None Remove="Resources\Images\site_link.svg" />
-	  <None Remove="Resources\Images\site_link_darkmode.svg" />
-	  <None Remove="Resources\Images\text_link.svg" />
-	  <None Remove="Resources\Images\text_link_darkmode.svg" />
+	  <None Remove="Resources\Images\icon_text_link.svg" />
+	  <None Remove="Resources\Images\icon_three_dots.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
 		<PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="110.2.0" />
+		<PackageReference Include="SkiaSharp" Version="2.88.3" />
 	</ItemGroup>
 
 	<ItemGroup>

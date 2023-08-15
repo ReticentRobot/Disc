@@ -26,15 +26,11 @@ public static class MauiProgram
             ;
 
         // Continue initializing your .NET MAUI App here
-        builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
-        //builder.Services.AddSingleton<IRestService, RestService>();
-        builder.Services.AddSingleton<IPostsService, PostsService>();
-        builder.Services.AddSingleton<ILoginService, LoginService>();
-        //builder.Services.AddTransient<IPostsViewModel, PostsViewModel>();
-
+        builder.Services.AddSingleton<RestService>(new RestService(Constants.RestUrl));
+        
+        //builder.Services.AddSingleton<ILoginService, LoginService>();
         builder.Services.AddSingleton<HomePage>();
         builder.Services.AddTransient<WebViewPage>();
-        //builder.Services.AddTransient<PostsPage>();
         builder.Services.AddSingleton<SettingsPage>();
 
         return builder.Build();

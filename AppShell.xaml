@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="Disc.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Disc"
+    x:Class="Disc.AppShell"
     xmlns:views="clr-namespace:Disc.Views"
-    Shell.FlyoutBehavior="Disabled">
+    FlyoutBehavior="Flyout"
+    FlyoutWidth="300">
+    <FlyoutItem Title="Add Account" Icon="discuit_logo.png">
+        <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Settings" Icon="icon_settings.png">
+        <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Search Discs">
 
-    <TabBar>
-         <ShellContent
+    </FlyoutItem>
+    <FlyoutItem Title="Feeds">
+
+    </FlyoutItem>
+    <!--<TabBar>
+        <ShellContent
             ContentTemplate="{DataTemplate views:HomePage}"
             Icon="{OnPlatform 'icon_home.svg', iOS='icon_home.svg', MacCatalyst='icon_home.svg'}" />
 
@@ -19,19 +30,5 @@
         <ShellContent
             ContentTemplate="{DataTemplate views:CommunitiesPage}"
             Icon="{OnPlatform 'icon_communities.svg', iOS='icon_communities.svg', MacCatalyst='icon_communities.svg'}" />
-
-        <ShellContent
-            ContentTemplate="{DataTemplate views:GuidelinesPage}"
-            Icon="{OnPlatform 'icon_guidelines.svg', iOS='icon_guidelines.svg', MacCatalyst='icon_guidelines.svg'}" />
-
-        <ShellContent
-            ContentTemplate="{DataTemplate views:SettingsPage}"
-            Icon="{OnPlatform 'icon_settings.svg', iOS='icon_settings.svg', MacCatalyst='icon_settings.svg'}" />
-
-        <ShellContent
-            ContentTemplate="{DataTemplate views:AboutPage}"
-            Icon="{OnPlatform 'icon_about.png', iOS='icon_about_ios.png', MacCatalyst='icon_about_ios.png'}" />
-
-    </TabBar>
-
+    </TabBar>-->
 </Shell>

@@ -1,5 +1,6 @@
 using Disc.ViewModels;
-using Disc.Models;
+using Disc.Services;
+using Microsoft.Maui.Layouts;
 
 namespace Disc.Views;
 public partial class HomePage : ContentPage
@@ -12,15 +13,15 @@ public partial class HomePage : ContentPage
         public string ImageUrl { get; set; } 
     }
 
-    public HomePage()
+    public HomePage(IServiceProvider serviceProvider)
     {
-        BindingContext = vm = new PostsViewModel();
+        var restService = serviceProvider.GetService<RestService>();
+        BindingContext = vm = new PostsViewModel(serviceProvider);
         InitializeComponent();
     }
 
     protected async override void OnAppearing()
     {
-        //string next = vm.Data.Next;
         await vm.LoadPosts();
     }
 
@@ -45,19 +46,38 @@ public partial class HomePage : ContentPage
         LinkInfo linkInfo = new LinkInfo();
         linkInfo.LinkUrl = args.Parameter as string;
 
-        if (linkInfo != null)
+        if (linkInfo.LinkUrl != null)
         {
-            Console.WriteLine("LinkInfo is not null: " + linkInfo);
-            Console.WriteLine("LinkInfo URL: " + linkInfo.LinkUrl);
-            // Create a new Disc.Models.Link object and set its LinkUrl property to the linkInfo.LinkUrl value
-            Disc.Models.Link link = new Disc.Models.Link();
+            Console.WriteLine("Link URL: " + linkInfo.LinkUrl);
 
-            link.LinkUrl = linkInfo.LinkUrl;
-            Console.WriteLine("Link URL: " + link.LinkUrl);
-            // Create a new WebViewViewModel object and pass the link.LinkUrl property to its constructor
-            var VM = new WebViewViewModel(link.LinkUrl);
-            // Push the WebViewPage onto the navigation stack
-            await Application.Current.MainPage.Navigation.PushModalAsync(new WebViewPage(VM));
+            //Check to see if URL is a direct image
+            var extension = Path.GetExtension(linkInfo.LinkUrl);
+            Console.WriteLine("Link Extension: " + extension);
+            if (extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".bmp")
+            {
+                // Create a new Models.Link object and set its LinkUrl property to the linkInfo.LinkUrl value
+                Models.Link link = new Models.Link();
+                link.LinkUrl = linkInfo.LinkUrl;
+
+                // Create a new ImageViewModel object and pass the link.LinkUrl property to its constructor
+                var VM = new ImageViewModel(link.LinkUrl);
+
+                // Push the WebViewPage onto the navigation stack
+                await Application.Current.MainPage.Navigation.PushModalAsync(new ImagePage(VM));
+            }
+            else
+            {
+                // Create a new Models.Link object and set its LinkUrl property to the linkInfo.LinkUrl value
+                Models.Link link = new Models.Link();
+
+                link.LinkUrl = linkInfo.LinkUrl;
+
+                // Create a new WebViewViewModel object and pass the link.LinkUrl property to its constructor
+                var VM = new WebViewViewModel(link.LinkUrl);
+
+                // Push the WebViewPage onto the navigation stack
+                await Application.Current.MainPage.Navigation.PushModalAsync(new WebViewPage(VM));
+            }
         }
         else
         {
