@@ -1,13 +1,11 @@
 ﻿using System.Globalization; 
 using Humanizer;
-using Humanizer.Localisation;
-
 namespace Disc.Converters
-{ 
-    public class CreatedAtConverter : IValueConverter 
-    { 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) 
-        { 
+{
+    public class CreatedAtConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
             // Check if the value is a DateTime
             if (value is DateTime dateTime)
             {
@@ -25,7 +23,7 @@ namespace Disc.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-        // This converter does not support converting back from string to DateTime
+            // This converter does not support converting back from string to DateTime
             throw new NotImplementedException();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Diagnostics;
 
 namespace Disc.Converters
 {
@@ -9,7 +10,7 @@ namespace Disc.Converters
             // Check if the value is a string
             if (value is string type)
             {
-                Console.WriteLine("Post Type: " + type);
+                Debug.WriteLine("Post Type: " + type);
                 // Return the corresponding image file name based on the type
                 switch (type)
                 {

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android33.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -26,10 +26,42 @@
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">28.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">29.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<Platforms>ARM64</Platforms>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>com.reticentrobot.disc</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|ARM64'">
+	  <ApplicationId>com.reticentrobot.disc</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|ARM64'">
+	  <ApplicationId>com.reticentrobot.disc</ApplicationId>
+	  <TrimMode>link</TrimMode>
+	  <NoWarn>1701;1702</NoWarn>
+	  <RunAOTCompilation>True</RunAOTCompilation>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>com.reticentrobot.disc</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|ARM64'">
+	  <ApplicationId>com.reticentrobot.disc</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android33.0|ARM64'">
+	  <ApplicationId>com.reticentrobot.disc</ApplicationId>
+	  <TrimMode>link</TrimMode>
+	  <PublishTrimmed>True</PublishTrimmed>
+	  <NoWarn>1701;1702</NoWarn>
+	  <RunAOTCompilation>True</RunAOTCompilation>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,7 +69,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\icon_disc.png" Color="#7646F0" />
 
 		<!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#7646F0" BaseSize="128,128" />
+	    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#7646F0" BaseSize="128,128" />
     
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -58,55 +90,41 @@
 	  <None Remove="Resources\Images\icon_chevron.svg" />
 	  <None Remove="Resources\Images\icon_communities.svg" />
 	  <None Remove="Resources\Images\icon_disc.png" />
+	  <None Remove="Resources\Images\icon_downvote.svg" />
 	  <None Remove="Resources\Images\icon_filter.svg" />
+	  <None Remove="Resources\Images\icon_filter_darkmode.svg" />
 	  <None Remove="Resources\Images\icon_guidelines.svg" />
 	  <None Remove="Resources\Images\icon_home.svg" />
 	  <None Remove="Resources\Images\icon_image_link.svg" />
 	  <None Remove="Resources\Images\icon_menu.svg" />
 	  <None Remove="Resources\Images\icon_posts.svg" />
+	  <None Remove="Resources\Images\icon_profile.svg" />
 	  <None Remove="Resources\Images\icon_search.svg" />
+	  <None Remove="Resources\Images\icon_search_darkmode.svg" />
 	  <None Remove="Resources\Images\icon_settings.svg" />
 	  <None Remove="Resources\Images\icon_site_link.svg" />
 	  <None Remove="Resources\Images\icon_subscriptions.svg" />
 	  <None Remove="Resources\Images\icon_text_link.svg" />
 	  <None Remove="Resources\Images\icon_three_dots.svg" />
+	  <None Remove="Resources\Images\icon_three_dots_darkmode.svg" />
+	  <None Remove="Resources\Images\icon_upvote.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
 		<PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="110.2.0" />
-		<PackageReference Include="SkiaSharp" Version="2.88.3" />
+		<PackageReference Include="Sentry.Maui" Version="3.35.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AboutPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CommunitiesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\GuidelinesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Profile.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ProfilePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SubscriptionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\WebViewPage.xaml">

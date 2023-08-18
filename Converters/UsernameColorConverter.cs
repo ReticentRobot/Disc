@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Diagnostics;
 
 namespace Disc.Converters
 {
@@ -6,32 +7,41 @@ namespace Disc.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Check if the value is a string
-            if (value is string name)
+            try
             {
-                // Use a switch statement to return a different color based on the name
-                switch (name)
+                // Check if the value is a string
+                if (value is string name)
                 {
-                    case "Previnder":
-                        return Colors.OrangeRed;
-                    case "ReticentRobot":
-                        return Colors.SkyBlue;
-                    case "TestAccountPlsIgnore":
-                        return Colors.SkyBlue;
-                    case "Felix30":
-                        return Colors.SkyBlue;
-                    case "RenegadeBAM":
-                        return Colors.SkyBlue;
-                    case "gsurfer04":
-                        return Colors.SkyBlue;
-                    case "Keukotis":
-                        return Colors.SkyBlue;
-                    default:
-                        return Colors.AntiqueWhite;
+                    // Use a switch statement to return a different color based on the name
+                    switch (name)
+                    {
+                        case "Previnder":
+                            return Colors.OrangeRed;
+                        case "ReticentRobot":
+                            return Colors.SkyBlue;
+                        case "TestAccountPlsIgnore":
+                            return Colors.SkyBlue;
+                        case "Felix30":
+                            return Colors.SkyBlue;
+                        case "RenegadeBAM":
+                            return Colors.SkyBlue;
+                        case "gsurfer04":
+                            return Colors.SkyBlue;
+                        case "Keukotis":
+                            return Colors.SkyBlue;
+                        default:
+                            return Colors.AntiqueWhite;
+                    }
                 }
+                // Return a default color if the value is not a string
+                return Colors.White;
             }
-            // Return a default color if the value is not a string
-            return Colors.White;
+            
+            catch (NullReferenceException e)
+            {
+                Debug.WriteLine("Null Reference Exception Caught: " + e);
+                return null;
+            } 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

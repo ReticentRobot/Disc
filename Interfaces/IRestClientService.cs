@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace Disc.Services
+namespace Disc.Interfaces
 {
     public interface IRestClientService
     {

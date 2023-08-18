@@ -2,12 +2,11 @@ using Disc.Models;
 using RestSharp;
 using System.Text.Json;
 using System.Collections.ObjectModel;
-using PropertyChanged;
 using Disc.Services;
+using System.Diagnostics;
 
 namespace Disc.ViewModels;
 
-[AddINotifyPropertyChangedInterface]
 public partial class PostsViewModel : BaseViewModel
 {
     //Get Root Data
@@ -59,11 +58,11 @@ public partial class PostsViewModel : BaseViewModel
     // constructor to initialize objects
     public PostsViewModel(IServiceProvider serviceProvider)
     {
-        Console.WriteLine("Setting _restService to restService");
+        Debug.WriteLine("Setting _restService to restService");
         _restService = serviceProvider.GetRequiredService<RestService>();
 
         var client = _restService.client;
-        Console.WriteLine("Client Value in constructor: " + client);
+        Debug.WriteLine("Client Value in constructor: " + client);
 
         Posts = new ObservableCollection<Post>();
     }
@@ -81,7 +80,7 @@ public partial class PostsViewModel : BaseViewModel
         var request = new RestRequest(url);
         var TotalPostsBeforePull = Posts.Count; //Total number of posts before pulling new posts
 
-        Console.WriteLine("Client Value in LoadPosts: " + client); ;
+        Debug.WriteLine("Client Value in LoadPosts: " + client); ;
         var content = await _restService.client.GetAsync(request);
 
         //set json options
@@ -92,25 +91,25 @@ public partial class PostsViewModel : BaseViewModel
 
         if (content.StatusCode.ToString() == "OK")
         {
-        //IsLoadingMoreItems = true;
-        Data = JsonSerializer.Deserialize<Root>(content.Content, options);
+            //IsLoadingMoreItems = true;
+            Data = JsonSerializer.Deserialize<Root>(content.Content, options);
 
-        var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
+            var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
 
-        var PostsCount = NewPosts + TotalPostsBeforePull; //Total number of posts after pulling new posts
+            var PostsCount = NewPosts + TotalPostsBeforePull; //Total number of posts after pulling new posts
 
-        //var Index = NewPosts - Constants.PageSize; //Get the root index of the new posts pulled in
-        var Index = 0;
-        Console.WriteLine(Index);   
-        while (NewPosts > Index) //while the total number of posts is greater than the total number of posts minus the limit of posts to add
-        {
-            Posts.Add(Data.Posts[Index]);
-            Index++;
-        }
+            //var Index = NewPosts - Constants.PageSize; //Get the root index of the new posts pulled in
+            var Index = 0;
+            Debug.WriteLine(Index);
+            while (NewPosts > Index) //while the total number of posts is greater than the total number of posts minus the limit of posts to add
+            {
+                Posts.Add(Data.Posts[Index]);
+                Index++;
+            }
         }
         else
         {
-            Console.WriteLine("Error connecting to API");
-        } 
+            Debug.WriteLine("Error connecting to API");
+        }
     }
 }

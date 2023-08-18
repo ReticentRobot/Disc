@@ -1,6 +1,6 @@
 ﻿using Disc.Models;
-using System.Linq;
 using System.Windows.Input;
+
 
 namespace Disc.ViewModels
 {
