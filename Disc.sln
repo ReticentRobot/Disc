@@ -8,15 +8,19 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM64 = Debug|ARM64
 		Release|Any CPU = Release|Any CPU
+		Release|ARM64 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Debug|Any CPU.ActiveCfg = Debug|ARM64
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Debug|ARM64.Build.0 = Debug|ARM64
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Release|Any CPU.ActiveCfg = Release|ARM64
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Release|ARM64.ActiveCfg = Release|ARM64
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Release|ARM64.Build.0 = Release|ARM64
+		{D8F2178D-19F4-411E-B869-098A56CF5F54}.Release|ARM64.Deploy.0 = Release|ARM64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
