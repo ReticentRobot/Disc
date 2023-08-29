@@ -34,8 +34,8 @@
     <CollectionView 
             x:Name="PostsCollection"
             ItemsSource="{Binding Posts}"
-            BackgroundColor="{AppThemeBinding Light=Pink, Dark=#1C1D20}"
-            RemainingItemsThreshold="10"
+            BackgroundColor="{AppThemeBinding Light=AntiqueWhite, Dark=#1C1D20}"
+            RemainingItemsThreshold="5"
             RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"
             >
         <CollectionView.ItemTemplate>

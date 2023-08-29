@@ -22,7 +22,7 @@ public static class MauiProgram
                 // Debug messages are written to stdout with Console.Writeline,
                 // and are viewable in your IDE's debug console or with 'adb logcat', etc.
                 // This option is not recommended when deploying your application.
-                options.Debug = true;
+                options.Debug = false;
 
                 // Set TracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
                 // We recommend adjusting this value in production.
