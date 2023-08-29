@@ -117,7 +117,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
 		<PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="110.2.0" />
-		<PackageReference Include="Sentry.Maui" Version="3.35.1" />
+		<PackageReference Include="Sentry.Maui" Version="3.36.0" />
 	</ItemGroup>
 
 	<ItemGroup>

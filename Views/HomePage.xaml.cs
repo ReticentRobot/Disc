@@ -61,9 +61,8 @@ public partial class HomePage : ContentPage
         Grid.SetRow(imageButton, nextRow); 
     }
 
-        async void OnTapGestureRecognizerTapped(object sender, TappedEventArgs args)
+    async void OnTapGestureRecognizerTapped(object sender, TappedEventArgs args)
     {
-
         LinkInfo linkInfo = new LinkInfo();
         linkInfo.LinkUrl = args.Parameter as string;
 

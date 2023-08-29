@@ -34,8 +34,8 @@
     <CollectionView 
             x:Name="PostsCollection"
             ItemsSource="{Binding Posts}"
-            BackgroundColor="{AppThemeBinding Light=Pink, Dark=#1C1D20}"
-            RemainingItemsThreshold="10"
+            BackgroundColor="{AppThemeBinding Light=AntiqueWhite, Dark=#1C1D20}"
+            RemainingItemsThreshold="5"
             RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"
             >
         <CollectionView.ItemTemplate>
@@ -158,7 +158,7 @@
                             Aspect="AspectFill"
                             HeightRequest="20"
                             WidthRequest="20" 
-                            Margin="10,-30,20,20" >
+                            Margin="10,0,20,40" >
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
@@ -173,14 +173,13 @@
                             Aspect="AspectFill"
                             HeightRequest="20"
                             WidthRequest="20" 
-                            Margin="20,10,20,10"
+                            Margin="20,0,20,40"
                             Clicked="OnChevronClicked"
                             >
                         <ImageButton.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </ImageButton.Behaviors>
                     </ImageButton>
-
                     <Image 
                         IsVisible="False"
                         Grid.Row="5"
@@ -241,8 +240,6 @@
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
                     </Image>
-
-                    
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
