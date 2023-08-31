@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Disc.Services;
 using Disc.Views;
+using Sharpnado.CollectionView;
 using System.Diagnostics;
 
 namespace Disc;
@@ -38,7 +39,10 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             })
-            ;
+            // Initialize SharpnadoCollectionVIew
+            .UseSharpnadoCollectionView(loggerEnable: false);
+        ;
+
         // TODO: Add light mode support, for now - setting app to always load in dark mode
         // Application.Current.UserAppTheme = AppTheme.Dark;
 

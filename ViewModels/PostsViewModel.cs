@@ -50,12 +50,8 @@ public partial class PostsViewModel : BaseViewModel
     // constructor to initialize objects
     public PostsViewModel(IServiceProvider serviceProvider)
     {
-        Debug.WriteLine("Setting _restService to restService");
         _restService = serviceProvider.GetRequiredService<RestService>();
-
         var client = _restService.client;
-        Debug.WriteLine("Client Value in constructor: " + client);
-
         Posts = new ObservableCollection<Post>();
     }
 
@@ -71,8 +67,6 @@ public partial class PostsViewModel : BaseViewModel
 
         var request = new RestRequest(url);
         var TotalPostsBeforePull = Posts.Count; //Total number of posts before pulling new posts
-
-        Debug.WriteLine("Client Value in LoadPosts: " + client); ;
         var content = await _restService.client.GetAsync(request);
 
         //set json options
