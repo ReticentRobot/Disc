@@ -47,23 +47,11 @@ public partial class PostsViewModel : BaseViewModel
 
     public ObservableCollection<Post> Posts { get; set; }
 
-    //handle refreshing
-    private bool listRefreshing = false;
-    public bool ListRefreshing
-    {
-        get => listRefreshing;
-        set => SetProperty(ref listRefreshing, value);
-    }
-
     // constructor to initialize objects
     public PostsViewModel(IServiceProvider serviceProvider)
     {
-        Debug.WriteLine("Setting _restService to restService");
         _restService = serviceProvider.GetRequiredService<RestService>();
-
         var client = _restService.client;
-        Debug.WriteLine("Client Value in constructor: " + client);
-
         Posts = new ObservableCollection<Post>();
     }
 
@@ -79,8 +67,6 @@ public partial class PostsViewModel : BaseViewModel
 
         var request = new RestRequest(url);
         var TotalPostsBeforePull = Posts.Count; //Total number of posts before pulling new posts
-
-        Debug.WriteLine("Client Value in LoadPosts: " + client); ;
         var content = await _restService.client.GetAsync(request);
 
         //set json options
@@ -91,20 +77,16 @@ public partial class PostsViewModel : BaseViewModel
 
         if (content.StatusCode.ToString() == "OK")
         {
-            //IsLoadingMoreItems = true;
             Data = JsonSerializer.Deserialize<Root>(content.Content, options);
 
             var NewPosts = Data.Posts.Count; //Total number of new posts grabbed
 
-            var PostsCount = NewPosts + TotalPostsBeforePull; //Total number of posts after pulling new posts
-
-            //var Index = NewPosts - Constants.PageSize; //Get the root index of the new posts pulled in
-            var Index = 0;
-            Debug.WriteLine(Index);
-            while (NewPosts > Index) //while the total number of posts is greater than the total number of posts minus the limit of posts to add
+            // Loop through the new posts and add them to Data.Posts
+            var Target = 0;
+            while (NewPosts > Target) 
             {
-                Posts.Add(Data.Posts[Index]);
-                Index++;
+                Posts.Add(Data.Posts[Target]);
+                Target++;
             }
         }
         else

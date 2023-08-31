@@ -30,10 +30,10 @@
             Order="Primary" 
             IconImageSource="icon_three_dots_darkmode.png" />
     </ContentPage.ToolbarItems>
-  
+
     <CollectionView 
             x:Name="PostsCollection"
-            ItemsSource="{Binding Posts}"
+            ItemsSource="{Binding Posts, Mode=OneTime}"
             BackgroundColor="{AppThemeBinding Light=AntiqueWhite, Dark=#1C1D20}"
             RemainingItemsThreshold="5"
             RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"
@@ -42,10 +42,11 @@
             <DataTemplate x:Name="CompactView" x:DataType="models:Post">
                 <Grid x:Name="PostsGrid"
                       RowSpacing="0"
-                      ColumnSpacing="0">
+                      ColumnSpacing="0"
+                      >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="7" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="40" />
                         <RowDefinition Height="20" />
                         <RowDefinition Height="20" />
                         <RowDefinition Height="25" />
@@ -78,7 +79,7 @@
                             WidthRequest="55"
                             >
                         <Image 
-                                Source="{Binding Link.Image.ImageUrl, StringFormat='https://discuit.net{0}'}"
+                                Source="{Binding Link.Image.ImageUrl, StringFormat='https://discuit.net{0}', Mode=OneTime}"
                                 Aspect="AspectFill"
                                 HeightRequest="60"
                                 WidthRequest="60"
@@ -90,7 +91,7 @@
                                 <!-- Define a TapGestureRecognizer and handle its Tapped event -->
                                 <TapGestureRecognizer 
                                         Tapped="OnTapGestureRecognizerTapped" 
-                                        CommandParameter="{Binding Link.LinkUrl}"/>
+                                        CommandParameter="{Binding Link.LinkUrl, Mode=OneTime}"/>
                             </Image.GestureRecognizers>
                         </Image>
                     </Border>
@@ -98,7 +99,7 @@
                             Grid.Column="2"
                             Grid.Row="1"
                             FontSize="14"
-                            Text="{Binding Title}"
+                            Text="{Binding Title, Mode=OneTime}"
                             LineBreakMode="WordWrap"
                             MaxLines="2"
                             FontAttributes="None" 
@@ -112,9 +113,11 @@
                             Padding="0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding CommunityName}" FontSize="11" TextColor="{Binding CommunityName, Converter={StaticResource communityNameColor}}" />
+                                <!--<Span Text="{Binding CommunityName}" FontSize="11" TextColor="{Binding CommunityName, Converter={StaticResource communityNameColor}}" />-->
+                                <Span Text="{Binding CommunityName, Mode=OneTime}" FontSize="11" />
                                 <Span Text=" • " TextColor="Grey" FontSize="11" />
-                                <Span Text="{Binding Username}" FontSize="11" TextColor="{Binding Username, Converter={StaticResource usernameColor}}" />
+                                <!--<Span Text="{Binding Username}" FontSize="11" TextColor="{Binding Username, Converter={StaticResource usernameColor}}" />-->
+                                <Span Text="{Binding Username, Mode=OneTime}" FontSize="11" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -126,9 +129,10 @@
                             Padding="0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding CreatedAt, Converter={StaticResource createdAt}}" FontSize="11" />
+                                <!--<Span Text="{Binding CreatedAt, Converter={StaticResource createdAt}}" FontSize="11" />-->
+                                <Span Text="{Binding CreatedAt, Mode=OneTime}" FontSize="11" />
                                 <Span Text=" • " TextColor="Grey" FontSize="11" />
-                                <Span Text="{Binding Link.Hostname}" FontSize="11" />
+                                <Span Text="{Binding Link.Hostname, Mode=OneTime}" FontSize="11" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -148,7 +152,8 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <Image
+                    <!--Source="{Binding Type, Converter={StaticResource typeToImage}}"-->
+                    <!--<Image
                             Source="{Binding Type, Converter={StaticResource typeToImage}}"
                             Grid.Row="2"
                             Grid.RowSpan="2"
@@ -162,8 +167,8 @@
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
-                    </Image>
-                    <ImageButton
+                    </Image>-->
+                    <!--<ImageButton
                             Grid.Row="5"
                             Grid.RowSpan="2"
                             Grid.Column="4"
@@ -240,9 +245,9 @@
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
-                    </Image>
+                    </Image>-->
 
-                    
+
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
