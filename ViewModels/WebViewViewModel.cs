@@ -17,16 +17,8 @@ namespace Disc.ViewModels
             // Create a new Link object and set its LinkUrl property to the linkUrl parameter
             Link link = new Link();
 
-            /* Unmerged change from project 'Disc (net7.0-maccatalyst)'
-            Before:
-                        link.LinkUrl = linkUrl; 
+            // Assign the link object to the Link property
 
-                        // Assign the link object to the Link property
-            After:
-                        link.LinkUrl = linkUrl;
-
-                        // Assign the link object to the Link property
-            */
             link.LinkUrl = linkUrl;
 
             // Assign the link object to the Link property

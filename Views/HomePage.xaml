@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage x:Name="PostsPage"
              Title="Posts"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -32,21 +31,21 @@
     </ContentPage.ToolbarItems>
 
     <CollectionView 
-            x:Name="PostsCollection"
-            ItemsSource="{Binding Posts, Mode=OneTime}"
-            BackgroundColor="{AppThemeBinding Light=AntiqueWhite, Dark=#1C1D20}"
-            RemainingItemsThreshold="5"
-            RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"
-            >
+        x:Name="PostsCollection"
+        ItemsSource="{Binding Posts, Mode=OneTime}"
+        BackgroundColor="{AppThemeBinding Light=AntiqueWhite, Dark=#1C1D20}"
+        RemainingItemsThreshold="10"
+        RemainingItemsThresholdReached="OnCollectionViewRemainingItemsThresholdReached"
+        >
         <CollectionView.ItemTemplate>
             <DataTemplate x:Name="CompactView" x:DataType="models:Post">
                 <Grid x:Name="PostsGrid"
-                      RowSpacing="0"
-                      ColumnSpacing="0"
-                      >
+                  RowSpacing="0"
+                  ColumnSpacing="0"
+                  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="7" />
-                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="20" />
                         <RowDefinition Height="20" />
                         <RowDefinition Height="25" />
@@ -60,90 +59,87 @@
                         <ColumnDefinition Width="25" />
                     </Grid.ColumnDefinitions>
                     <BoxView
-                        Grid.Row="0"
-                        Grid.ColumnSpan="5"
-                        HeightRequest="1" 
-                        Color="Black" 
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill"
-                        Margin="0,0,0,7" />
+                    Grid.Row="0"
+                    Grid.ColumnSpan="5"
+                    HeightRequest="1" 
+                    Color="Black" 
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill"
+                    Margin="0,0,0,7" />
                     <Border 
-                            Stroke="#1C1D20" 
-                            StrokeThickness="0" 
-                            StrokeShape="RoundRectangle 15"  
-                                
-                            Grid.RowSpan="5"
-                            Margin="30,0,0,0"
-                            Padding="10"
-                            HeightRequest="55"
-                            WidthRequest="55"
-                            >
+                        Stroke="#1C1D20" 
+                        StrokeThickness="0" 
+                        StrokeShape="RoundRectangle 15"  
+                            
+                        Grid.RowSpan="5"
+                        Margin="30,0,0,0"
+                        Padding="10"
+                        HeightRequest="55"
+                        WidthRequest="55"
+                        >
                         <Image 
-                                Source="{Binding Link.Image.ImageUrl, StringFormat='https://discuit.net{0}', Mode=OneTime}"
-                                Aspect="AspectFill"
-                                HeightRequest="60"
-                                WidthRequest="60"
-                                Grid.Row="0" 
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                BackgroundColor="#1C1D20" >
+                            Source="{Binding Link.Image.ImageUrl, StringFormat='https://discuit.net{0}', Mode=OneTime}"
+                            Aspect="AspectFill"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            Grid.Row="0" 
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="#1C1D20" >
                             <Image.GestureRecognizers>
                                 <!-- Define a TapGestureRecognizer and handle its Tapped event -->
                                 <TapGestureRecognizer 
-                                        Tapped="OnTapGestureRecognizerTapped" 
-                                        CommandParameter="{Binding Link.LinkUrl, Mode=OneTime}"/>
+                                    Tapped="OnTapGestureRecognizerTapped" 
+                                    CommandParameter="{Binding Link.LinkUrl, Mode=OneTime}"/>
                             </Image.GestureRecognizers>
                         </Image>
                     </Border>
                     <Label 
-                            Grid.Column="2"
-                            Grid.Row="1"
-                            FontSize="14"
-                            Text="{Binding Title, Mode=OneTime}"
-                            LineBreakMode="WordWrap"
-                            MaxLines="2"
-                            FontAttributes="None" 
-                            />
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        FontSize="14"
+                        Text="{Binding Title, Mode=OneTime}"
+                        LineBreakMode="WordWrap"
+                        MaxLines="2"
+                        FontAttributes="None" 
+                        />
                     <Label 
-                            x:Name="communityAndUserLabel"
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            FontAttributes="None"
-                            VerticalOptions="End"
-                            Padding="0">
+                        x:Name="communityAndUserLabel"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        FontAttributes="None"
+                        VerticalOptions="End"
+                        Padding="0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <!--<Span Text="{Binding CommunityName}" FontSize="11" TextColor="{Binding CommunityName, Converter={StaticResource communityNameColor}}" />-->
-                                <Span Text="{Binding CommunityName, Mode=OneTime}" FontSize="11" />
+                                <Span Text="{Binding CommunityName, Mode=OneTime}" FontSize="11" TextColor="{Binding CommunityName, Converter={StaticResource communityNameColor}}" />
                                 <Span Text=" • " TextColor="Grey" FontSize="11" />
-                                <!--<Span Text="{Binding Username}" FontSize="11" TextColor="{Binding Username, Converter={StaticResource usernameColor}}" />-->
-                                <Span Text="{Binding Username, Mode=OneTime}" FontSize="11" />
+                                <Span Text="{Binding Username, Mode=OneTime}" FontSize="11" TextColor="{Binding Username, Converter={StaticResource usernameColor}}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <Label 
-                            Grid.Row="3"
-                            Grid.Column="2"
-                            FontAttributes="None"
-                            VerticalOptions="End"
-                            Padding="0">
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        FontAttributes="None"
+                        VerticalOptions="End"
+                        Padding="0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <!--<Span Text="{Binding CreatedAt, Converter={StaticResource createdAt}}" FontSize="11" />-->
-                                <Span Text="{Binding CreatedAt, Mode=OneTime}" FontSize="11" />
+                                <Span Text="{Binding CreatedAt, Mode=OneTime, Converter={StaticResource createdAt}}" FontSize="11" />
                                 <Span Text=" • " TextColor="Grey" FontSize="11" />
                                 <Span Text="{Binding Link.Hostname, Mode=OneTime}" FontSize="11" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <Label
-                            Grid.Row="4"
-                            Grid.Column="2"
-                            TextColor="Grey"
-                            FontAttributes="None"
-                            VerticalOptions="End" 
-                            FontSize="11"
-                            Padding="0,0,0,5">
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        TextColor="Grey"
+                        FontAttributes="None"
+                        VerticalOptions="End" 
+                        FontSize="11"
+                        Padding="0,0,0,5">
                         <Label.Text>
                             <MultiBinding StringFormat="{}{0} up • {1} down • {2} Comments">
                                 <Binding Path="Upvotes" />
@@ -152,40 +148,38 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
-                    <!--Source="{Binding Type, Converter={StaticResource typeToImage}}"-->
-                    <!--<Image
-                            Source="{Binding Type, Converter={StaticResource typeToImage}}"
-                            Grid.Row="2"
-                            Grid.RowSpan="2"
-                            Grid.Column="4"
-                            Grid.ColumnSpan="2"
-                            HorizontalOptions="End"
-                            Aspect="AspectFill"
-                            HeightRequest="20"
-                            WidthRequest="20" 
-                            Margin="10,-30,20,20" >
+                    <Image
+                        Source="{Binding Type, Converter={StaticResource typeToImage}}"
+                        Grid.Row="2"
+                        Grid.RowSpan="2"
+                        Grid.Column="4"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="End"
+                        Aspect="AspectFill"
+                        HeightRequest="20"
+                        WidthRequest="20" 
+                        Margin="10,-30,20,20" >
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
-                    </Image>-->
-                    <!--<ImageButton
-                            Grid.Row="5"
-                            Grid.RowSpan="2"
-                            Grid.Column="4"
-                            Grid.ColumnSpan="2"
-                            HorizontalOptions="End"
-                            Source="icon_chevron.png"
-                            Aspect="AspectFill"
-                            HeightRequest="20"
-                            WidthRequest="20" 
-                            Margin="20,10,20,10"
-                            Clicked="OnChevronClicked"
-                            >
+                    </Image>
+                    <ImageButton
+                        Grid.Row="5"
+                        Grid.RowSpan="2"
+                        Grid.Column="4"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="End"
+                        Source="icon_chevron.png"
+                        Aspect="AspectFill"
+                        HeightRequest="20"
+                        WidthRequest="20" 
+                        Margin="20,0,20,30"
+                        Clicked="OnChevronClicked"
+                        >
                         <ImageButton.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </ImageButton.Behaviors>
                     </ImageButton>
-
                     <Image 
                         IsVisible="False"
                         Grid.Row="5"
@@ -201,53 +195,6 @@
                             <toolkit:IconTintColorBehavior TintColor="White" />
                         </Image.Behaviors>
                     </Image>
-                    <Image 
-                        IsVisible="False"
-                        Grid.Row="5"
-                        Grid.Column="2"
-                        HorizontalOptions="End"
-                        Source="icon_profile.png"
-                        Aspect="AspectFill"
-                        HeightRequest="20"
-                        WidthRequest="20" 
-                        Margin="20,0,20,10"
-                        >
-                        <Image.Behaviors>
-                            <toolkit:IconTintColorBehavior TintColor="White" />
-                        </Image.Behaviors>
-                    </Image>
-                    <Image 
-                        IsVisible="False"
-                        Grid.Row="5"
-                        Grid.Column="2"
-                        HorizontalOptions="End"
-                        Source="icon_profile.png"
-                        Aspect="AspectFill"
-                        HeightRequest="20"
-                        WidthRequest="20" 
-                        Margin="20,0,20,10"
-                        >
-                        <Image.Behaviors>
-                            <toolkit:IconTintColorBehavior TintColor="White" />
-                        </Image.Behaviors>
-                    </Image>
-                    <Image 
-                        IsVisible="False"
-                        Grid.Row="5"
-                        Grid.Column="2"
-                        HorizontalOptions="End"
-                        Source="icon_profile.png"
-                        Aspect="AspectFill"
-                        HeightRequest="20"
-                        WidthRequest="20" 
-                        Margin="20,0,20,10"
-                        >
-                        <Image.Behaviors>
-                            <toolkit:IconTintColorBehavior TintColor="White" />
-                        </Image.Behaviors>
-                    </Image>-->
-
-
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
